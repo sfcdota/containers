@@ -1,0 +1,19 @@
+./base/vector/front/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> myvector;
+ ^
+./base/vector/front/patched.cpp:9:2: error: use of undeclared identifier 'myvector'
+ myvector.push_back(78);
+ ^
+./base/vector/front/patched.cpp:10:2: error: use of undeclared identifier 'myvector'
+ myvector.push_back(16);
+ ^
+./base/vector/front/patched.cpp:14:2: error: use of undeclared identifier 'myvector'
+ myvector.front() -= myvector.back();
+ ^
+./base/vector/front/patched.cpp:14:22: error: use of undeclared identifier 'myvector'
+ myvector.front() -= myvector.back();
+                     ^
+./base/vector/front/patched.cpp:16:45: error: use of undeclared identifier 'myvector'
+ std::cout << "myvector.front() is now " << myvector.front() << '\n';
+                                            ^
+6 errors generated.

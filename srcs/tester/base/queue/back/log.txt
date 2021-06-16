@@ -1,0 +1,19 @@
+./base/queue/back/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::queue<int> myqueue;
+ ^
+./base/queue/back/patched.cpp:9:2: error: use of undeclared identifier 'myqueue'
+ myqueue.push(12);
+ ^
+./base/queue/back/patched.cpp:10:2: error: use of undeclared identifier 'myqueue'
+ myqueue.push(75); // this is now the back
+ ^
+./base/queue/back/patched.cpp:12:2: error: use of undeclared identifier 'myqueue'
+ myqueue.back() -= myqueue.front();
+ ^
+./base/queue/back/patched.cpp:12:20: error: use of undeclared identifier 'myqueue'
+ myqueue.back() -= myqueue.front();
+                   ^
+./base/queue/back/patched.cpp:14:43: error: use of undeclared identifier 'myqueue'
+ std::cout << "myqueue.back() is now " << myqueue.back() << '\n';
+                                          ^
+6 errors generated.

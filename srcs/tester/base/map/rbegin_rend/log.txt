@@ -1,0 +1,22 @@
+./base/map/rbegin_rend/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/rbegin_rend/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+  mymap['x'] = 100;
+  ^
+./base/map/rbegin_rend/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['y'] = 200;
+  ^
+./base/map/rbegin_rend/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['z'] = 300;
+  ^
+./base/map/rbegin_rend/patched.cpp:14:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::reverse_iterator rit;
+  ^
+./base/map/rbegin_rend/patched.cpp:15:12: error: use of undeclared identifier 'mymap'
+  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+           ^
+./base/map/rbegin_rend/patched.cpp:15:33: error: use of undeclared identifier 'mymap'
+  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+                                ^
+7 errors generated.

@@ -1,0 +1,42 @@
+./base/vector/relational_operators/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> foo (3,100); // three ints with a value of 100
+ ^
+./base/vector/relational_operators/patched.cpp:8:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> bar (2,200); // two ints with a value of 200
+ ^
+./base/vector/relational_operators/patched.cpp:10:6: error: use of undeclared identifier 'foo'
+ if (foo==bar) std::cout << "foo and bar are equal\n";
+     ^
+./base/vector/relational_operators/patched.cpp:10:11: error: use of undeclared identifier 'bar'
+ if (foo==bar) std::cout << "foo and bar are equal\n";
+          ^
+./base/vector/relational_operators/patched.cpp:11:6: error: use of undeclared identifier 'foo'
+ if (foo!=bar) std::cout << "foo and bar are not equal\n";
+     ^
+./base/vector/relational_operators/patched.cpp:11:11: error: use of undeclared identifier 'bar'
+ if (foo!=bar) std::cout << "foo and bar are not equal\n";
+          ^
+./base/vector/relational_operators/patched.cpp:12:6: error: use of undeclared identifier 'foo'; did you mean 'for'?
+ if (foo< bar) std::cout << "foo is less than bar\n";
+     ^~~
+     for
+./base/vector/relational_operators/patched.cpp:12:6: error: expected expression
+./base/vector/relational_operators/patched.cpp:13:6: error: use of undeclared identifier 'foo'
+ if (foo> bar) std::cout << "foo is greater than bar\n";
+     ^
+./base/vector/relational_operators/patched.cpp:13:11: error: use of undeclared identifier 'bar'
+ if (foo> bar) std::cout << "foo is greater than bar\n";
+          ^
+./base/vector/relational_operators/patched.cpp:14:6: error: use of undeclared identifier 'foo'
+ if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+     ^
+./base/vector/relational_operators/patched.cpp:14:11: error: use of undeclared identifier 'bar'
+ if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+          ^
+./base/vector/relational_operators/patched.cpp:15:6: error: use of undeclared identifier 'foo'
+ if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+     ^
+./base/vector/relational_operators/patched.cpp:15:11: error: use of undeclared identifier 'bar'
+ if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+          ^
+14 errors generated.

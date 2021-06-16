@@ -1,0 +1,28 @@
+./base/map/empty/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/empty/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=10;
+  ^
+./base/map/empty/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=20;
+  ^
+./base/map/empty/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=30;
+  ^
+./base/map/empty/patched.cpp:14:11: error: use of undeclared identifier 'mymap'
+  while (!mymap.empty())
+          ^
+./base/map/empty/patched.cpp:16:18: error: use of undeclared identifier 'mymap'
+    std::cout << mymap.begin()->first << " => " << mymap.begin()->second << '\n';
+                 ^
+./base/map/empty/patched.cpp:16:52: error: use of undeclared identifier 'mymap'
+    std::cout << mymap.begin()->first << " => " << mymap.begin()->second << '\n';
+                                                   ^
+./base/map/empty/patched.cpp:17:5: error: use of undeclared identifier 'mymap'
+    mymap.erase(mymap.begin());
+    ^
+./base/map/empty/patched.cpp:17:17: error: use of undeclared identifier 'mymap'
+    mymap.erase(mymap.begin());
+                ^
+9 errors generated.

@@ -1,0 +1,28 @@
+./base/vector/erase/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> myvector;
+ ^
+./base/vector/erase/patched.cpp:10:28: error: use of undeclared identifier 'myvector'
+ for (int i=1; i<=10; i++) myvector.push_back(i);
+                           ^
+./base/vector/erase/patched.cpp:13:2: error: use of undeclared identifier 'myvector'
+ myvector.erase (myvector.begin()+5);
+ ^
+./base/vector/erase/patched.cpp:13:18: error: use of undeclared identifier 'myvector'
+ myvector.erase (myvector.begin()+5);
+                 ^
+./base/vector/erase/patched.cpp:16:2: error: use of undeclared identifier 'myvector'
+ myvector.erase (myvector.begin(),myvector.begin()+3);
+ ^
+./base/vector/erase/patched.cpp:16:18: error: use of undeclared identifier 'myvector'
+ myvector.erase (myvector.begin(),myvector.begin()+3);
+                 ^
+./base/vector/erase/patched.cpp:16:35: error: use of undeclared identifier 'myvector'
+ myvector.erase (myvector.begin(),myvector.begin()+3);
+                                  ^
+./base/vector/erase/patched.cpp:19:23: error: use of undeclared identifier 'myvector'
+ for (unsigned i=0; i<myvector.size(); ++i)
+                      ^
+./base/vector/erase/patched.cpp:20:22: error: use of undeclared identifier 'myvector'
+ std::cout << ' ' << myvector[i];
+                     ^
+9 errors generated.

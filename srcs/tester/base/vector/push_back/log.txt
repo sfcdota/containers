@@ -1,0 +1,10 @@
+./base/vector/push_back/patched.cpp:8:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> myvector;
+ ^
+./base/vector/push_back/patched.cpp:15:2: error: use of undeclared identifier 'myvector'
+ myvector.push_back (myint);
+ ^
+./base/vector/push_back/patched.cpp:18:41: error: use of undeclared identifier 'myvector'
+ std::cout << "myvector stores " << int(myvector.size()) << " numbers.\n";
+                                        ^
+3 errors generated.

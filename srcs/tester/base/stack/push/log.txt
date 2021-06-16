@@ -1,0 +1,16 @@
+./base/stack/push/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::stack<int> mystack;
+ ^
+./base/stack/push/patched.cpp:9:26: error: use of undeclared identifier 'mystack'
+ for (int i=0; i<5; ++i) mystack.push(i);
+                         ^
+./base/stack/push/patched.cpp:12:10: error: use of undeclared identifier 'mystack'
+ while (!mystack.empty())
+         ^
+./base/stack/push/patched.cpp:14:22: error: use of undeclared identifier 'mystack'
+ std::cout << ' ' << mystack.top();
+                     ^
+./base/stack/push/patched.cpp:15:2: error: use of undeclared identifier 'mystack'
+ mystack.pop();
+ ^
+5 errors generated.

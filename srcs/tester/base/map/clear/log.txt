@@ -1,0 +1,40 @@
+./base/map/clear/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/clear/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+  mymap['x']=100;
+  ^
+./base/map/clear/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['y']=200;
+  ^
+./base/map/clear/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['z']=300;
+  ^
+./base/map/clear/patched.cpp:14:8: error: use of undeclared identifier 'ft'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+       ^
+./base/map/clear/patched.cpp:14:39: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                      ^
+./base/map/clear/patched.cpp:14:58: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                                         ^
+./base/map/clear/patched.cpp:17:3: error: use of undeclared identifier 'mymap'
+  mymap.clear();
+  ^
+./base/map/clear/patched.cpp:18:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=1101;
+  ^
+./base/map/clear/patched.cpp:19:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=2202;
+  ^
+./base/map/clear/patched.cpp:22:8: error: use of undeclared identifier 'ft'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+       ^
+./base/map/clear/patched.cpp:22:39: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                      ^
+./base/map/clear/patched.cpp:22:58: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                                         ^
+13 errors generated.

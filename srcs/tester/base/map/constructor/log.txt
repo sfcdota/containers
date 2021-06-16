@@ -1,0 +1,49 @@
+./base/map/constructor/patched.cpp:14:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> first;
+  ^
+./base/map/constructor/patched.cpp:16:3: error: use of undeclared identifier 'first'
+  first['a']=10;
+  ^
+./base/map/constructor/patched.cpp:17:3: error: use of undeclared identifier 'first'
+  first['b']=30;
+  ^
+./base/map/constructor/patched.cpp:18:3: error: use of undeclared identifier 'first'
+  first['c']=50;
+  ^
+./base/map/constructor/patched.cpp:19:3: error: use of undeclared identifier 'first'
+  first['d']=70;
+  ^
+./base/map/constructor/patched.cpp:21:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> second (first.begin(),first.end());
+  ^
+./base/map/constructor/patched.cpp:23:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> third (second);
+  ^
+./base/map/constructor/patched.cpp:25:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int,classcomp> fourth;                 // class as Compare
+  ^
+./base/map/constructor/patched.cpp:28:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
+  ^
+./base/map/constructor/patched.cpp:30:3: error: use of undeclared identifier 'fifth'
+  fifth['a']=10;
+  ^
+./base/map/constructor/patched.cpp:31:3: error: use of undeclared identifier 'fifth'
+  fifth['b']=30;
+  ^
+./base/map/constructor/patched.cpp:32:3: error: use of undeclared identifier 'fifth'
+  fifth['c']=50;
+  ^
+./base/map/constructor/patched.cpp:33:3: error: use of undeclared identifier 'fifth'
+  fifth['d']=70;
+  ^
+./base/map/constructor/patched.cpp:35:8: error: use of undeclared identifier 'ft'
+  for (ft::map<char, int, bool(*)(char,char)>::iterator i = fifth.begin(); i != fifth.end(); i++)
+       ^
+./base/map/constructor/patched.cpp:35:61: error: use of undeclared identifier 'fifth'
+  for (ft::map<char, int, bool(*)(char,char)>::iterator i = fifth.begin(); i != fifth.end(); i++)
+                                                            ^
+./base/map/constructor/patched.cpp:35:81: error: use of undeclared identifier 'fifth'
+  for (ft::map<char, int, bool(*)(char,char)>::iterator i = fifth.begin(); i != fifth.end(); i++)
+                                                                                ^
+16 errors generated.

@@ -1,0 +1,16 @@
+./base/map/count/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/count/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap ['a']=101;
+  ^
+./base/map/count/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap ['c']=202;
+  ^
+./base/map/count/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
+  mymap ['f']=303;
+  ^
+./base/map/count/patched.cpp:17:9: error: use of undeclared identifier 'mymap'
+    if (mymap.count(c)>0)
+        ^
+5 errors generated.

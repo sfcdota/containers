@@ -1,0 +1,49 @@
+./base/map/erase/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/erase/patched.cpp:8:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::iterator it;
+  ^
+./base/map/erase/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=10;
+  ^
+./base/map/erase/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=20;
+  ^
+./base/map/erase/patched.cpp:13:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=30;
+  ^
+./base/map/erase/patched.cpp:14:3: error: use of undeclared identifier 'mymap'
+  mymap['d']=40;
+  ^
+./base/map/erase/patched.cpp:15:3: error: use of undeclared identifier 'mymap'
+  mymap['e']=50;
+  ^
+./base/map/erase/patched.cpp:16:3: error: use of undeclared identifier 'mymap'
+  mymap['f']=60;
+  ^
+./base/map/erase/patched.cpp:18:6: error: use of undeclared identifier 'mymap'
+  it=mymap.find('b');
+     ^
+./base/map/erase/patched.cpp:19:3: error: use of undeclared identifier 'mymap'
+  mymap.erase (it);                   // erasing by iterator
+  ^
+./base/map/erase/patched.cpp:21:3: error: use of undeclared identifier 'mymap'
+  mymap.erase ('c');                  // erasing by key
+  ^
+./base/map/erase/patched.cpp:23:6: error: use of undeclared identifier 'mymap'
+  it=mymap.find ('e');
+     ^
+./base/map/erase/patched.cpp:24:3: error: use of undeclared identifier 'mymap'
+  mymap.erase ( it, mymap.end() );    // erasing by range
+  ^
+./base/map/erase/patched.cpp:24:21: error: use of undeclared identifier 'mymap'
+  mymap.erase ( it, mymap.end() );    // erasing by range
+                    ^
+./base/map/erase/patched.cpp:27:11: error: use of undeclared identifier 'mymap'
+  for (it=mymap.begin(); it!=mymap.end(); ++it)
+          ^
+./base/map/erase/patched.cpp:27:30: error: use of undeclared identifier 'mymap'
+  for (it=mymap.begin(); it!=mymap.end(); ++it)
+                             ^
+16 errors generated.

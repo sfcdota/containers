@@ -1,0 +1,34 @@
+./base/map/operator=/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> first;
+  ^
+./base/map/operator=/patched.cpp:8:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> second;
+  ^
+./base/map/operator=/patched.cpp:10:3: error: use of undeclared identifier 'first'
+  first['x']=8;
+  ^
+./base/map/operator=/patched.cpp:11:3: error: use of undeclared identifier 'first'
+  first['y']=16;
+  ^
+./base/map/operator=/patched.cpp:12:3: error: use of undeclared identifier 'first'
+  first['z']=32;
+  ^
+./base/map/operator=/patched.cpp:14:3: error: use of undeclared identifier 'second'
+  second=first;                // second now contains 3 ints
+  ^
+./base/map/operator=/patched.cpp:14:10: error: use of undeclared identifier 'first'
+  second=first;                // second now contains 3 ints
+         ^
+./base/map/operator=/patched.cpp:15:3: error: use of undeclared identifier 'first'
+  first=ft::map<char,int>();  // and first is now empty
+  ^
+./base/map/operator=/patched.cpp:15:9: error: use of undeclared identifier 'ft'
+  first=ft::map<char,int>();  // and first is now empty
+        ^
+./base/map/operator=/patched.cpp:17:37: error: use of undeclared identifier 'first'
+  std::cout << "Size of first: " << first.size() << '\n';
+                                    ^
+./base/map/operator=/patched.cpp:18:38: error: use of undeclared identifier 'second'
+  std::cout << "Size of second: " << second.size() << '\n';
+                                     ^
+11 errors generated.

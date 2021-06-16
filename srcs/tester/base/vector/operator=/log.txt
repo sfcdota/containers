@@ -1,0 +1,29 @@
+./base/vector/operator=/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> foo (3,0);
+ ^
+./base/vector/operator=/patched.cpp:8:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> bar (5,0);
+ ^
+./base/vector/operator=/patched.cpp:10:2: error: use of undeclared identifier 'bar'
+ bar = foo;
+ ^
+./base/vector/operator=/patched.cpp:10:8: error: use of undeclared identifier 'foo'; did you mean 'for'?
+ bar = foo;
+       ^~~
+       for
+./base/vector/operator=/patched.cpp:10:8: error: expected expression
+./base/vector/operator=/patched.cpp:11:2: error: use of undeclared identifier 'foo'
+ foo = ft::vector<int>();
+ ^
+./base/vector/operator=/patched.cpp:11:8: error: use of undeclared identifier 'ft'
+ foo = ft::vector<int>();
+       ^
+./base/vector/operator=/patched.cpp:13:38: error: use of undeclared identifier 'foo'; did you mean 'for'?
+ std::cout << "Size of foo: " << int(foo.size()) << '\n';
+                                     ^~~
+                                     for
+./base/vector/operator=/patched.cpp:13:38: error: expected expression
+./base/vector/operator=/patched.cpp:14:38: error: use of undeclared identifier 'bar'
+ std::cout << "Size of bar: " << int(bar.size()) << '\n';
+                                     ^
+10 errors generated.

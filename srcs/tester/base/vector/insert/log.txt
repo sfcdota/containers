@@ -1,0 +1,43 @@
+./base/vector/insert/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> myvector (3,100);
+ ^
+./base/vector/insert/patched.cpp:8:2: error: use of undeclared identifier 'ft'
+ ft::vector<int>::iterator it;
+ ^
+./base/vector/insert/patched.cpp:10:7: error: use of undeclared identifier 'myvector'
+ it = myvector.begin();
+      ^
+./base/vector/insert/patched.cpp:11:7: error: use of undeclared identifier 'myvector'
+ it = myvector.insert ( it , 200 );
+      ^
+./base/vector/insert/patched.cpp:13:2: error: use of undeclared identifier 'myvector'
+ myvector.insert (it,2,300);
+ ^
+./base/vector/insert/patched.cpp:16:7: error: use of undeclared identifier 'myvector'
+ it = myvector.begin();
+      ^
+./base/vector/insert/patched.cpp:18:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> anothervector (2,400);
+ ^
+./base/vector/insert/patched.cpp:19:2: error: use of undeclared identifier 'myvector'
+ myvector.insert (it+2,anothervector.begin(),anothervector.end());
+ ^
+./base/vector/insert/patched.cpp:19:24: error: use of undeclared identifier 'anothervector'
+ myvector.insert (it+2,anothervector.begin(),anothervector.end());
+                       ^
+./base/vector/insert/patched.cpp:19:46: error: use of undeclared identifier 'anothervector'
+ myvector.insert (it+2,anothervector.begin(),anothervector.end());
+                                             ^
+./base/vector/insert/patched.cpp:22:2: error: use of undeclared identifier 'myvector'
+ myvector.insert (myvector.begin(), myarray, myarray+3);
+ ^
+./base/vector/insert/patched.cpp:22:19: error: use of undeclared identifier 'myvector'
+ myvector.insert (myvector.begin(), myarray, myarray+3);
+                  ^
+./base/vector/insert/patched.cpp:25:10: error: use of undeclared identifier 'myvector'
+ for (it=myvector.begin(); it<myvector.end(); it++)
+         ^
+./base/vector/insert/patched.cpp:25:31: error: use of undeclared identifier 'myvector'
+ for (it=myvector.begin(); it<myvector.end(); it++)
+                              ^
+14 errors generated.

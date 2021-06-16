@@ -1,0 +1,31 @@
+./base/map/key_comp/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/key_comp/patched.cpp:9:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::key_compare mycomp = mymap.key_comp();
+  ^
+./base/map/key_comp/patched.cpp:9:43: error: use of undeclared identifier 'mymap'
+  ft::map<char,int>::key_compare mycomp = mymap.key_comp();
+                                          ^
+./base/map/key_comp/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=100;
+  ^
+./base/map/key_comp/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=200;
+  ^
+./base/map/key_comp/patched.cpp:13:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=300;
+  ^
+./base/map/key_comp/patched.cpp:17:3: error: use of undeclared identifier 'ft'
+  ft::map<char, int>::reverse_iterator t = mymap.rbegin();
+  ^
+./base/map/key_comp/patched.cpp:17:44: error: use of undeclared identifier 'mymap'
+  ft::map<char, int>::reverse_iterator t = mymap.rbegin();
+                                           ^
+./base/map/key_comp/patched.cpp:20:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::iterator it = mymap.begin();
+  ^
+./base/map/key_comp/patched.cpp:20:36: error: use of undeclared identifier 'mymap'
+  ft::map<char,int>::iterator it = mymap.begin();
+                                   ^
+10 errors generated.

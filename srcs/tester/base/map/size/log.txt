@@ -1,0 +1,16 @@
+./base/map/size/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/size/patched.cpp:8:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=101;
+  ^
+./base/map/size/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=202;
+  ^
+./base/map/size/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=302;
+  ^
+./base/map/size/patched.cpp:12:38: error: use of undeclared identifier 'mymap'
+  std::cout << "mymap.size() is " << mymap.size() << '\n';
+                                     ^
+5 errors generated.

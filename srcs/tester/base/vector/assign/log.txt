@@ -1,0 +1,37 @@
+./base/vector/assign/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> first;
+ ^
+./base/vector/assign/patched.cpp:8:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> second;
+ ^
+./base/vector/assign/patched.cpp:9:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> third;
+ ^
+./base/vector/assign/patched.cpp:11:2: error: use of undeclared identifier 'first'
+ first.assign (7,100); // 7 ints with a value of 100
+ ^
+./base/vector/assign/patched.cpp:13:2: error: use of undeclared identifier 'ft'
+ ft::vector<int>::iterator it;
+ ^
+./base/vector/assign/patched.cpp:14:5: error: use of undeclared identifier 'first'
+ it=first.begin()+1;
+    ^
+./base/vector/assign/patched.cpp:16:2: error: use of undeclared identifier 'second'
+ second.assign (it,first.end()-1); // the 5 central values of first
+ ^
+./base/vector/assign/patched.cpp:16:20: error: use of undeclared identifier 'first'
+ second.assign (it,first.end()-1); // the 5 central values of first
+                   ^
+./base/vector/assign/patched.cpp:19:2: error: use of undeclared identifier 'third'
+ third.assign (myints,myints+3); // assigning from array.
+ ^
+./base/vector/assign/patched.cpp:21:41: error: use of undeclared identifier 'first'
+ std::cout << "Size of first: " << int (first.size()) << '\n';
+                                        ^
+./base/vector/assign/patched.cpp:22:42: error: use of undeclared identifier 'second'
+ std::cout << "Size of second: " << int (second.size()) << '\n';
+                                         ^
+./base/vector/assign/patched.cpp:23:41: error: use of undeclared identifier 'third'
+ std::cout << "Size of third: " << int (third.size()) << '\n';
+                                        ^
+12 errors generated.

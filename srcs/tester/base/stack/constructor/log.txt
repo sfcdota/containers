@@ -1,0 +1,25 @@
+./base/stack/constructor/patched.cpp:12:2: error: use of undeclared identifier 'ft'
+ ft::stack<int, std::deque<int> > first; // empty stack
+ ^
+./base/stack/constructor/patched.cpp:13:2: error: use of undeclared identifier 'ft'
+ ft::stack<int, std::deque<int> > second (mydeque); // stack initialized to copy of deque
+ ^
+./base/stack/constructor/patched.cpp:15:2: error: use of undeclared identifier 'ft'
+ ft::stack<int,std::vector<int> > third; // empty stack using vector
+ ^
+./base/stack/constructor/patched.cpp:16:2: error: use of undeclared identifier 'ft'
+ ft::stack<int,std::vector<int> > fourth (myvector);
+ ^
+./base/stack/constructor/patched.cpp:18:36: error: use of undeclared identifier 'first'
+ std::cout << "size of first: " << first.size() << '\n';
+                                   ^
+./base/stack/constructor/patched.cpp:19:37: error: use of undeclared identifier 'second'
+ std::cout << "size of second: " << second.size() << '\n';
+                                    ^
+./base/stack/constructor/patched.cpp:20:36: error: use of undeclared identifier 'third'
+ std::cout << "size of third: " << third.size() << '\n';
+                                   ^
+./base/stack/constructor/patched.cpp:21:37: error: use of undeclared identifier 'fourth'
+ std::cout << "size of fourth: " << fourth.size() << '\n';
+                                    ^
+8 errors generated.

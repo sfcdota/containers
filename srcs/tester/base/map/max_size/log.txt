@@ -1,0 +1,10 @@
+./base/map/max_size/patched.cpp:8:3: error: use of undeclared identifier 'ft'
+  ft::map<int,int> mymap;
+  ^
+./base/map/max_size/patched.cpp:10:7: error: use of undeclared identifier 'mymap'
+  if (mymap.max_size()>1000)
+      ^
+./base/map/max_size/patched.cpp:12:28: error: use of undeclared identifier 'mymap'
+    for (i=0; i<1000; i++) mymap[i]=0;
+                           ^
+3 errors generated.

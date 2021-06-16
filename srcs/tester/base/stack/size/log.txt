@@ -1,0 +1,19 @@
+./base/stack/size/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::stack<int> myints;
+ ^
+./base/stack/size/patched.cpp:8:30: error: use of undeclared identifier 'myints'
+ std::cout << "0. size: " << myints.size() << '\n';
+                             ^
+./base/stack/size/patched.cpp:10:26: error: use of undeclared identifier 'myints'
+ for (int i=0; i<5; i++) myints.push(i);
+                         ^
+./base/stack/size/patched.cpp:11:30: error: use of undeclared identifier 'myints'
+ std::cout << "1. size: " << myints.size() << '\n';
+                             ^
+./base/stack/size/patched.cpp:13:2: error: use of undeclared identifier 'myints'
+ myints.pop();
+ ^
+./base/stack/size/patched.cpp:14:30: error: use of undeclared identifier 'myints'
+ std::cout << "2. size: " << myints.size() << '\n';
+                             ^
+6 errors generated.

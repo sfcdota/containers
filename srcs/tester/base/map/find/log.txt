@@ -1,0 +1,37 @@
+./base/map/find/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/find/patched.cpp:8:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::iterator it;
+  ^
+./base/map/find/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=50;
+  ^
+./base/map/find/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=100;
+  ^
+./base/map/find/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=150;
+  ^
+./base/map/find/patched.cpp:13:3: error: use of undeclared identifier 'mymap'
+  mymap['d']=200;
+  ^
+./base/map/find/patched.cpp:15:8: error: use of undeclared identifier 'mymap'
+  it = mymap.find('b');
+       ^
+./base/map/find/patched.cpp:16:13: error: use of undeclared identifier 'mymap'
+  if (it != mymap.end())
+            ^
+./base/map/find/patched.cpp:17:5: error: use of undeclared identifier 'mymap'
+    mymap.erase (it);
+    ^
+./base/map/find/patched.cpp:21:27: error: use of undeclared identifier 'mymap'
+  std::cout << "a => " << mymap.find('a')->second << '\n';
+                          ^
+./base/map/find/patched.cpp:22:27: error: use of undeclared identifier 'mymap'
+  std::cout << "c => " << mymap.find('c')->second << '\n';
+                          ^
+./base/map/find/patched.cpp:23:27: error: use of undeclared identifier 'mymap'
+  std::cout << "d => " << mymap.find('d')->second << '\n';
+                          ^
+12 errors generated.

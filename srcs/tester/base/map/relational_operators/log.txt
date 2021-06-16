@@ -1,0 +1,51 @@
+./base/map/relational_operators/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> foo,bar;
+  ^
+./base/map/relational_operators/patched.cpp:8:3: error: use of undeclared identifier 'foo'
+  foo['a']=100;
+  ^
+./base/map/relational_operators/patched.cpp:9:3: error: use of undeclared identifier 'foo'
+  foo['b']=200;
+  ^
+./base/map/relational_operators/patched.cpp:10:3: error: use of undeclared identifier 'bar'
+  bar['a']=10;
+  ^
+./base/map/relational_operators/patched.cpp:11:3: error: use of undeclared identifier 'bar'
+  bar['z']=1000;
+  ^
+./base/map/relational_operators/patched.cpp:14:7: error: use of undeclared identifier 'foo'
+  if (foo==bar) std::cout << "foo and bar are equal\n";
+      ^
+./base/map/relational_operators/patched.cpp:14:12: error: use of undeclared identifier 'bar'
+  if (foo==bar) std::cout << "foo and bar are equal\n";
+           ^
+./base/map/relational_operators/patched.cpp:15:7: error: use of undeclared identifier 'foo'
+  if (foo!=bar) std::cout << "foo and bar are not equal\n";
+      ^
+./base/map/relational_operators/patched.cpp:15:12: error: use of undeclared identifier 'bar'
+  if (foo!=bar) std::cout << "foo and bar are not equal\n";
+           ^
+./base/map/relational_operators/patched.cpp:16:7: error: use of undeclared identifier 'foo'; did you mean 'for'?
+  if (foo< bar) std::cout << "foo is less than bar\n";
+      ^~~
+      for
+./base/map/relational_operators/patched.cpp:16:7: error: expected expression
+./base/map/relational_operators/patched.cpp:17:7: error: use of undeclared identifier 'foo'
+  if (foo> bar) std::cout << "foo is greater than bar\n";
+      ^
+./base/map/relational_operators/patched.cpp:17:12: error: use of undeclared identifier 'bar'
+  if (foo> bar) std::cout << "foo is greater than bar\n";
+           ^
+./base/map/relational_operators/patched.cpp:18:7: error: use of undeclared identifier 'foo'
+  if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+      ^
+./base/map/relational_operators/patched.cpp:18:12: error: use of undeclared identifier 'bar'
+  if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+           ^
+./base/map/relational_operators/patched.cpp:19:7: error: use of undeclared identifier 'foo'
+  if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+      ^
+./base/map/relational_operators/patched.cpp:19:12: error: use of undeclared identifier 'bar'
+  if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+           ^
+17 errors generated.

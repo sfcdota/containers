@@ -1,0 +1,16 @@
+./base/vector/empty/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> myvector;
+ ^
+./base/vector/empty/patched.cpp:10:26: error: use of undeclared identifier 'myvector'
+ for (int i=1;i<=10;i++) myvector.push_back(i);
+                         ^
+./base/vector/empty/patched.cpp:12:10: error: use of undeclared identifier 'myvector'
+ while (!myvector.empty())
+         ^
+./base/vector/empty/patched.cpp:14:9: error: use of undeclared identifier 'myvector'
+ sum += myvector.back();
+        ^
+./base/vector/empty/patched.cpp:15:2: error: use of undeclared identifier 'myvector'
+ myvector.pop_back();
+ ^
+5 errors generated.

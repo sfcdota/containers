@@ -1,0 +1,46 @@
+./base/map/lower_upper_bound/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/lower_upper_bound/patched.cpp:8:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::iterator itlow,itup;
+  ^
+./base/map/lower_upper_bound/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=20;
+  ^
+./base/map/lower_upper_bound/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=40;
+  ^
+./base/map/lower_upper_bound/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=60;
+  ^
+./base/map/lower_upper_bound/patched.cpp:13:3: error: use of undeclared identifier 'mymap'
+  mymap['d']=80;
+  ^
+./base/map/lower_upper_bound/patched.cpp:14:3: error: use of undeclared identifier 'mymap'
+  mymap['e']=100;
+  ^
+./base/map/lower_upper_bound/patched.cpp:16:9: error: use of undeclared identifier 'mymap'
+  itlow=mymap.lower_bound ('b');  // itlow points to b
+        ^
+./base/map/lower_upper_bound/patched.cpp:17:3: error: use of undeclared identifier 'itup'
+  itup=mymap.upper_bound ('d');   // itup points to e (not d!)
+  ^
+./base/map/lower_upper_bound/patched.cpp:17:8: error: use of undeclared identifier 'mymap'
+  itup=mymap.upper_bound ('d');   // itup points to e (not d!)
+       ^
+./base/map/lower_upper_bound/patched.cpp:19:3: error: use of undeclared identifier 'mymap'
+  mymap.erase(itlow,itup);        // erases [itlow,itup)
+  ^
+./base/map/lower_upper_bound/patched.cpp:19:21: error: use of undeclared identifier 'itup'
+  mymap.erase(itlow,itup);        // erases [itlow,itup)
+                    ^
+./base/map/lower_upper_bound/patched.cpp:22:8: error: use of undeclared identifier 'ft'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+       ^
+./base/map/lower_upper_bound/patched.cpp:22:39: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                      ^
+./base/map/lower_upper_bound/patched.cpp:22:58: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                                         ^
+15 errors generated.

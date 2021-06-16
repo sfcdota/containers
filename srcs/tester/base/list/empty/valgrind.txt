@@ -1,0 +1,14 @@
+==26867== Memcheck, a memory error detector
+==26867== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==26867== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==26867== Command: ./base/list/empty/bin/test
+==26867== 
+==26867== 
+==26867== HEAP SUMMARY:
+==26867==     in use at exit: 0 bytes in 0 blocks
+==26867==   total heap usage: 13 allocs, 13 frees, 73,480 bytes allocated
+==26867== 
+==26867== All heap blocks were freed -- no leaks are possible
+==26867== 
+==26867== For lists of detected and suppressed errors, rerun with: -s
+==26867== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

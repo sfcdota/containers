@@ -1,0 +1,25 @@
+./base/map/value_comp/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/value_comp/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+  mymap['x']=1001;
+  ^
+./base/map/value_comp/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['y']=2002;
+  ^
+./base/map/value_comp/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['z']=3003;
+  ^
+./base/map/value_comp/patched.cpp:15:34: error: use of undeclared identifier 'mymap'
+  std::pair<char,int> highest = *mymap.rbegin();          // last element
+                                 ^
+./base/map/value_comp/patched.cpp:17:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int>::iterator it = mymap.begin();
+  ^
+./base/map/value_comp/patched.cpp:17:36: error: use of undeclared identifier 'mymap'
+  ft::map<char,int>::iterator it = mymap.begin();
+                                   ^
+./base/map/value_comp/patched.cpp:20:13: error: use of undeclared identifier 'mymap'
+  } while ( mymap.value_comp()(*it++, highest) );
+            ^
+8 errors generated.

@@ -1,0 +1,35 @@
+./base/vector/swap_vector/patched.cpp:7:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> foo (3,100); // three ints with a value of 100
+ ^
+./base/vector/swap_vector/patched.cpp:8:2: error: use of undeclared identifier 'ft'
+ ft::vector<int> bar (5,200); // five ints with a value of 200
+ ^
+./base/vector/swap_vector/patched.cpp:10:2: error: use of undeclared identifier 'foo'
+ foo.swap(bar);
+ ^
+./base/vector/swap_vector/patched.cpp:10:11: error: use of undeclared identifier 'bar'
+ foo.swap(bar);
+          ^
+./base/vector/swap_vector/patched.cpp:13:7: error: use of undeclared identifier 'ft'
+ for (ft::vector<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+      ^
+./base/vector/swap_vector/patched.cpp:13:38: error: use of undeclared identifier 'foo'; did you mean 'for'?
+ for (ft::vector<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+                                     ^~~
+                                     for
+./base/vector/swap_vector/patched.cpp:13:38: error: expected expression
+./base/vector/swap_vector/patched.cpp:13:55: error: use of undeclared identifier 'foo'; did you mean 'for'?
+ for (ft::vector<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+                                                      ^~~
+                                                      for
+./base/vector/swap_vector/patched.cpp:13:55: error: expected expression
+./base/vector/swap_vector/patched.cpp:18:7: error: use of undeclared identifier 'ft'
+ for (ft::vector<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
+      ^
+./base/vector/swap_vector/patched.cpp:18:38: error: use of undeclared identifier 'bar'
+ for (ft::vector<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
+                                     ^
+./base/vector/swap_vector/patched.cpp:18:55: error: use of undeclared identifier 'bar'
+ for (ft::vector<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
+                                                      ^
+12 errors generated.

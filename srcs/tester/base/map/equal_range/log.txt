@@ -1,0 +1,40 @@
+./base/map/equal_range/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/equal_range/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+  mymap['a']=10;
+  ^
+./base/map/equal_range/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['b']=20;
+  ^
+./base/map/equal_range/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['c']=30;
+  ^
+./base/map/equal_range/patched.cpp:13:13: error: use of undeclared identifier 'ft'
+  std::pair<ft::map<char,int>::iterator,ft::map<char,int>::iterator> ret;
+            ^
+./base/map/equal_range/patched.cpp:13:60: error: no type named 'iterator' in the global namespace
+  std::pair<ft::map<char,int>::iterator,ft::map<char,int>::iterator> ret;
+                                                         ~~^
+./base/map/equal_range/patched.cpp:13:68: error: expected unqualified-id
+  std::pair<ft::map<char,int>::iterator,ft::map<char,int>::iterator> ret;
+                                                                   ^
+./base/map/equal_range/patched.cpp:14:3: error: use of undeclared identifier 'ret'
+  ret = mymap.equal_range('b');
+  ^
+./base/map/equal_range/patched.cpp:14:9: error: use of undeclared identifier 'mymap'
+  ret = mymap.equal_range('b');
+        ^
+./base/map/equal_range/patched.cpp:17:16: error: use of undeclared identifier 'ret'
+  std::cout << ret.first->first << " => " << ret.first->second << '\n';
+               ^
+./base/map/equal_range/patched.cpp:17:46: error: use of undeclared identifier 'ret'
+  std::cout << ret.first->first << " => " << ret.first->second << '\n';
+                                             ^
+./base/map/equal_range/patched.cpp:20:16: error: use of undeclared identifier 'ret'
+  std::cout << ret.second->first << " => " << ret.second->second << '\n';
+               ^
+./base/map/equal_range/patched.cpp:20:47: error: use of undeclared identifier 'ret'
+  std::cout << ret.second->first << " => " << ret.second->second << '\n';
+                                              ^
+13 errors generated.

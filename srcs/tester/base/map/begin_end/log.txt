@@ -1,0 +1,22 @@
+./base/map/begin_end/patched.cpp:7:3: error: use of undeclared identifier 'ft'
+  ft::map<char,int> mymap;
+  ^
+./base/map/begin_end/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+  mymap['b'] = 100;
+  ^
+./base/map/begin_end/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+  mymap['a'] = 200;
+  ^
+./base/map/begin_end/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  mymap['c'] = 300;
+  ^
+./base/map/begin_end/patched.cpp:14:8: error: use of undeclared identifier 'ft'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+       ^
+./base/map/begin_end/patched.cpp:14:39: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                      ^
+./base/map/begin_end/patched.cpp:14:58: error: use of undeclared identifier 'mymap'
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+                                                         ^
+7 errors generated.
