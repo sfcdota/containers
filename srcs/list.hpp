@@ -4,7 +4,6 @@
 #include "Utils.hpp"
 
 namespace ft {
-struct bidirectional_iterator_tag {};
 template<class T, class Alloc = std::allocator<T> >
 class list {
  private:
