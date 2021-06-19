@@ -15,10 +15,10 @@ namespace ft {
     typedef typename allocator_type::const_reference const_reference;
     typedef typename allocator_type::pointer pointer;
     typedef typename allocator_type::const_pointer const_pointer;
-    typedef ft::random_access_iterator<bidirectional_iterator_tag, value_type> iterator;
-    typedef ft::random_access_iterator<bidirectional_iterator_tag, value_type> const_iterator;
-    typedef ft::reverse_iterator<iterator> reverse_iterator;
-    typedef ft::const_reverse_iterator<const_iterator> const_reverse_iterator;
+    typedef ft::random_access_iterator<random_access_iterator_tag, value_type> iterator;
+    typedef ft::random_access_iterator<random_access_iterator_tag, value_type> const_iterator;
+    typedef ft::reverse_random_access_iterator<iterator> reverse_iterator;
+    typedef ft::const_reverse_random_access_iterator<const_iterator> const_reverse_iterator;
     typedef typename iterator::difference_type difference_type;
     typedef size_t size_type;
 
@@ -33,7 +33,7 @@ namespace ft {
            typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0):
         allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) { assign(first, last); }
     vector(const vector &x): allocator_(x.allocator_), array_(allocator_.allocate(1)), capacity_(0), size_(0) { *this = x; }
-    ~vector() { clear(); };
+    ~vector() { clear(); allocator_.deallocate(array_, capacity_ ? capacity_ : 1); };
     vector &operator=(const vector &x) { assign(x.begin(), x.end()); return *this; }
     iterator begin() { return iterator(array_); }
     const_iterator begin() const { return const_iterator(array_); }
@@ -47,17 +47,20 @@ namespace ft {
     size_type max_size() const { return allocator_.max_size; }
 
     void resize(size_type n, value_type val = value_type())
-    { if (n < size_) erase(begin() + n - 1, begin() + size_); else insert(begin() + size_, begin() + n, val); }
+    { if (n < size_) erase(iterator(array_ + n), end()); else insert(end(), n - size_, val); }
 
     size_type capacity() const { return capacity_; }
-    bool empty() const { return size_; }
+    bool empty() const { return !size_; }
 
     void reserve(size_type n) {
       if (n <= capacity_)
         return;
       pointer tmp = allocator_.allocate(n);
-      for (size_type i = 0; i < size_; i++)
+      for (size_type i = 0; i < size_; i++) {
+        allocator_.construct(tmp + i, array_[i]);
         tmp[i] = array_[i];
+        allocator_.destroy(array_ + i);
+      }
       allocator_.deallocate(array_, capacity_);
       array_ = tmp;
       capacity_ = n;
@@ -80,24 +83,23 @@ namespace ft {
     template<class InputIterator>
     void assign(InputIterator first, InputIterator last,
                 typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
-    { insert(begin(), first, last); };
+    { clear(); insert(begin(), first, last); };
 
-    void assign(size_type n, const value_type &val) { insert(begin(), n, val); };
+    void assign(size_type n, const value_type &val) { clear(); insert(begin(), n, val); };
     void push_back(const value_type &val) { insert(end(), val); };
     void pop_back() { erase(end() - 1); };
-    iterator insert(iterator position, const value_type &val) { insert(position, 1, val); return position - 1;};
+    iterator insert(iterator position, const value_type &val) { insert(position, 1, val); return position;};
     void insert(iterator position, size_type n, const value_type &val) {
       if (!n)
         return;
       size_type target_size = size_ + n;
       size_type index = position - begin();
-      if (!capacity_)
-        reserve(1);
-      for (size_type i = 1; i <= static_cast<size_type>(floor(target_size / capacity_)); i *= 2)
-        reserve(capacity_ * 2);
-      for(size_type i = 0; i < n; ++i) {
-        if (size_)
-          array_[size_ + i] = array_[index + i];
+      size_type tmp = capacity_ ? capacity_ : 1;
+      for (; target_size > tmp; tmp *= 2);
+      reserve(tmp);
+      for(size_type i = target_size - 1; i >= n && i > index && size_; --i)
+        array_[i] = array_[i - n];
+      for(size_type i = 0; i < n ; ++i) {
         allocator_.construct(array_ + index + i, val);
       }
       size_ = target_size;
@@ -107,14 +109,14 @@ namespace ft {
                 typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0) {
       InputIterator tmp = first;
       size_type n = 0;
+      size_type index = position - begin();
       while (tmp++ != last)
         n++;
       if (!n)
         return;
-      pointer target_ptr = position.GetPtr();
       insert(position, n, value_type()); //call to default-allocated insert(pos, val)
-      for(pointer ptr = target_ptr - n; ptr != target_ptr; ++first)
-        allocator_.construct(ptr++, *first);
+      for(size_type i = index; n > 0; n--, first++, ++i)
+        array_[i] = *first;
     };
     iterator erase(iterator position) { return erase(position, position + 1); };
 
@@ -122,30 +124,63 @@ namespace ft {
       size_type n = last - first;
       if (!n)
         return last;
-      pointer tmp = last.GetPtr();
-      for(size_type i = 0; i < n; i++) {
-        ft::swap(*(tmp - n), *tmp);
-        allocator_.destroy(tmp++);
-      }
+//      pointer tmp = last.GetPtr();
+//      for(size_type i = 0; i < n; i++) {
+//        if (n != size_)
+//          ft::swap(*(tmp - n), *tmp);
+//        allocator_.destroy(tmp++);
+//      }
+      for(size_type i = first - begin(); i < size_ && n != size_; i++)
+        ft::swap(array_[i], array_[i + n]);
+      for(size_type i = size_ - n; i < size_; i++)
+        allocator_.destroy(&array_[i]);
       size_ -= n;
       return last;
     };
+
+    void swap (vector& x) {
+      ft::swap(array_, x.array_);
+      ft::swap(allocator_, x.allocator_);
+      ft::swap(capacity_, x.capacity_);
+      ft::swap(size_, x.size_);
+    };
+
+
     void clear() { erase(begin(), end()); };
 
     allocator_type get_allocator() const { return allocator_; };
 
-    friend bool operator==(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs);
+    friend bool operator==(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs) {
+      if(lhs.size_ != rhs.size_)
+        return false;
+      bool res = true;
+      for(const_iterator lit = lhs.begin(), rit = rhs.begin(); res && lit != lhs.end() && rit != rhs.end(); ++lit, ++rit)
+        res = *lit == *rit;
+      return res;
+    };
 
-    friend bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs);
+    friend bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return !(lhs == rhs); }
 
-    friend bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs);
+    friend bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    { return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); }
 
-    friend bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs);
 
-    friend bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs);
+    friend bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return !(rhs < lhs); }
 
-    friend bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs);
 
+    friend bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return rhs < lhs; };
+
+
+    friend bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) { return !(lhs < rhs); }
+
+
+    friend void swap (vector<T,Alloc>& x, vector<T,Alloc>& y) { x.swap(y); };
+
+    void print() {
+      for(size_type i = 0; i < size_; ++i)
+        std::cout << array_[i] << ' ';
+      std::cout << std::endl;
+    }
    private:
     allocator_type allocator_;
     pointer array_;

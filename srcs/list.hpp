@@ -144,6 +144,14 @@ class list {
   iterator erase(iterator first, iterator last) { while(first != last) erase(first++); return last; };
 
 
+  void swap(list<value_type, Alloc> &x) {
+    node_ptr tmp_end = x.end_;
+    size_type tmp_size = x.size_;
+    x.end_ = end_;
+    x.size_ = size_;
+    end_ = tmp_end;
+    size_ = tmp_size;
+  };
 
   void resize(size_type n, value_type val = value_type()) {
     while(size_ > n) pop_back();  while (n > size_) push_back(val);
@@ -270,16 +278,9 @@ class list {
 
 
 
+  friend void swap (list<T,Alloc>& x, list<T,Alloc>& y) { x.swap(y); };
 
 
-  void swap(list<value_type, Alloc> &x) {
-    node_ptr tmp_end = x.end_;
-    size_type tmp_size = x.size_;
-    x.end_ = end_;
-    x.size_ = size_;
-    end_ = tmp_end;
-    size_ = tmp_size;
-  };
 
 };
 }

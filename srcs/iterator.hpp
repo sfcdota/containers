@@ -154,7 +154,7 @@ class const_random_access_iterator {
   bool operator<=(const const_random_access_iterator &r) { return ptr_ <= r.ptr_; };
   const_random_access_iterator & operator+=(int r) { ptr_ += r; return *this; };
   const_random_access_iterator & operator-=(int r) { ptr_ -= r; return *this; };
-  T& operator[](int n) { return *(ptr_ + n); }
+  reference operator[](int n) { return *(ptr_ + n); }
 
 //  operator ft::const_random_access_iterator<Category, T>() { return const_random_access_iterator<Category, T>(ptr_); }
   pointer GetPtr()  const { return ptr_; }
@@ -199,9 +199,90 @@ class random_access_iterator {
   bool operator<=(const random_access_iterator &r) { return ptr_ <= r.ptr_; };
   random_access_iterator & operator+=(int r) { ptr_ += r; return *this; };
   random_access_iterator & operator-=(int r) { ptr_ -= r; return *this; };
-  T& operator[](int n) { return *(ptr_ + n); }
+  reference operator[](int n) { return *(ptr_ + n); }
 
   operator ft::const_random_access_iterator<Category, T>() { return const_random_access_iterator<Category, T>(ptr_); }
+  pointer GetPtr()  const { return ptr_; }
+ protected:
+  pointer ptr_;
+};
+
+
+template <class Iterator>
+class const_reverse_random_access_iterator {
+ public:
+  typedef typename Iterator::value_type         value_type;
+  typedef typename Iterator::difference_type  difference_type;
+  typedef typename Iterator::pointer   pointer;
+  typedef typename Iterator::reference reference;
+
+  const_reverse_random_access_iterator(){};
+  const_reverse_random_access_iterator(pointer ptr): ptr_(ptr) {};
+  const_reverse_random_access_iterator(const const_reverse_random_access_iterator& in) { *this = in; };
+  const_reverse_random_access_iterator & operator=(const const_reverse_random_access_iterator & in) { ptr_ = in.ptr_; return *this;}
+  virtual ~const_reverse_random_access_iterator() {};
+  bool operator==(const const_reverse_random_access_iterator &r) const { return ptr_ == r.ptr_; };
+  bool operator!=(const const_reverse_random_access_iterator &r) const { return ptr_ != r.ptr_; };
+  const reference operator*() { return *ptr_; };
+  const reference operator->() { return *ptr_; };
+  const_reverse_random_access_iterator & operator++() { --ptr_; return *this; };
+  const_reverse_random_access_iterator operator++(int) { const_reverse_random_access_iterator tmp(*this); --ptr_; return tmp; };
+  const_reverse_random_access_iterator & operator--() { ++ptr_; return *this; };
+  const_reverse_random_access_iterator operator--(int) { const_reverse_random_access_iterator tmp(*this); ++ptr_; return tmp; };
+
+  const_reverse_random_access_iterator operator+(difference_type r) const { return const_reverse_random_access_iterator(ptr_ + r); };
+  pointer operator+( ) const { return ptr_; }
+  const_reverse_random_access_iterator operator-(difference_type r) const { return const_reverse_random_access_iterator(ptr_ - r); };
+  difference_type operator-(const const_reverse_random_access_iterator &r) const { return ptr_ - r.ptr_; };
+  bool operator>(const const_reverse_random_access_iterator &r) { return ptr_ > r.ptr_; };
+  bool operator>=(const const_reverse_random_access_iterator &r) { return ptr_ >= r.ptr_; };
+  bool operator<(const const_reverse_random_access_iterator &r) { return ptr_ < r.ptr_; };
+  bool operator<=(const const_reverse_random_access_iterator &r) { return ptr_ <= r.ptr_; };
+  const_reverse_random_access_iterator & operator+=(int r) { ptr_ += r; return *this; };
+  const_reverse_random_access_iterator & operator-=(int r) { ptr_ -= r; return *this; };
+  reference operator[](int n) { return *(ptr_ + n); }
+
+//  operator ft::const_random_access_iterator<Category, T>() { return const_random_access_iterator<Category, T>(ptr_); }
+  pointer GetPtr()  const { return ptr_; }
+ protected:
+  pointer ptr_;
+};
+
+template <class Iterator>
+class reverse_random_access_iterator {
+ public:
+  typedef typename Iterator::value_type         value_type;
+  typedef typename Iterator::difference_type  difference_type;
+  typedef typename Iterator::pointer   pointer;
+  typedef typename Iterator::reference reference;
+
+  reverse_random_access_iterator(){};
+  reverse_random_access_iterator(pointer ptr): ptr_(ptr) {};
+  reverse_random_access_iterator(const reverse_random_access_iterator& in) { *this = in; };
+  reverse_random_access_iterator & operator=(const reverse_random_access_iterator & in) { ptr_ = in.ptr_; return *this;}
+  virtual ~reverse_random_access_iterator() {};
+  bool operator==(const reverse_random_access_iterator &r) const { return ptr_ == r.ptr_; };
+  bool operator!=(const reverse_random_access_iterator &r) const { return ptr_ != r.ptr_; };
+  reference operator*() { return *ptr_; };
+  reference operator->() { return *ptr_; };
+  reverse_random_access_iterator & operator++() { --ptr_; return *this; };
+  reverse_random_access_iterator operator++(int) { reverse_random_access_iterator tmp(*this); --ptr_; return tmp; };
+  reverse_random_access_iterator & operator--() { ++ptr_; return *this; };
+  reverse_random_access_iterator operator--(int) { reverse_random_access_iterator tmp(*this); ++ptr_; return tmp; };
+
+  reverse_random_access_iterator operator+(difference_type r) const { return reverse_random_access_iterator(ptr_ + r); };
+  pointer operator+( ) const { return ptr_; }
+  reverse_random_access_iterator operator-(difference_type r) const { return reverse_random_access_iterator(ptr_ - r); };
+  difference_type operator-(const reverse_random_access_iterator &r) const { return ptr_ - r.ptr_; };
+  bool operator>(const reverse_random_access_iterator &r) { return ptr_ > r.ptr_; };
+  bool operator>=(const reverse_random_access_iterator &r) { return ptr_ >= r.ptr_; };
+  bool operator<(const reverse_random_access_iterator &r) { return ptr_ < r.ptr_; };
+  bool operator<=(const reverse_random_access_iterator &r) { return ptr_ <= r.ptr_; };
+  reverse_random_access_iterator & operator+=(int r) { ptr_ += r; return *this; };
+  reverse_random_access_iterator & operator-=(int r) { ptr_ -= r; return *this; };
+  reference operator[](int n) { return *(ptr_ + n); }
+
+  operator ft::const_reverse_random_access_iterator<Iterator>() { return const_reverse_random_access_iterator<Iterator>(ptr_); }
   pointer GetPtr()  const { return ptr_; }
  protected:
   pointer ptr_;
