@@ -36,7 +36,7 @@ namespace ft {
     ~Node() {};
   };
 
-  template<class T, class Alloc = std::allocator<T> >
+  template<class T, class Compare, class Alloc = std::allocator<T> >
   class Tree {
    public:
     typedef T value_type;
@@ -97,26 +97,50 @@ namespace ft {
       pivot->right = n;
     }
 
-    nodeptr GetMin(nodeptr n) {
+    nodeptr tree_min(nodeptr n) {
       while (n->left)
         n = n->left;
       return n;
     }
 
-    nodeptr NextNode(nodeptr n) {
-      if (IsLeftChild(n)) {
-        if (n->right) {
-          return GetMin(n->right);
-        }
-        return n->parent;
-      } else if (n->right)
-        return GetMin(n->right);
-      else {
-        while (n->parent && n->parent->data < n->data)
-          n = n->parent;
-        return n->parent; // if NULL then n was the most right (max) Node of the tree
-      }
+    nodeptr tree_max(nodeptr n) {
+      while(n->right)
+        n = n->right;
+      return n;
     }
+
+//    nodeptr next_node(nodeptr n) {
+//      if (IsLeftChild(n)) {
+//        if (n->right) {
+//          return tree_min(n->right);
+//        }
+//        return n->parent;
+//      } else if (n->right)
+//        return tree_min(n->right);
+//      else {
+//        while (n->parent && n->parent->data < n->data)
+//          n = n->parent;
+//        return n->parent; // if NULL then n was the most right (max) Node of the tree
+//      }
+//    }
+
+    nodeptr next_node(nodeptr n) {
+      if (n->right)
+        return tree_min(n->right);
+      while (!IsLeftChild(n))
+          n = n->parent;
+      return n->parent; // if NULL then n was the most right (max) Node of the tree
+    }
+
+
+    nodeptr prev_node(nodeptr n) {
+      if (n->left)
+        return tree_max(n->left);
+      while (IsLeftChild(n))
+        n = n->parent;
+      return n->parent;
+    }
+
 
 
     int GetLevel(nodeptr n) {
