@@ -4,7 +4,8 @@
 #include <list>
 #include <vector>
 #include "srcs/vector.hpp"
-
+#include "srcs/tree.hpp"
+#include <map>
 using namespace ft;
 
 // comparison, not case sensitive.
@@ -12,30 +13,19 @@ using namespace ft;
 
 int main ()
 {
-  ft::vector<int> myvector (3,100);
-  ft::vector<int>::iterator it;
-
-  it = myvector.begin();
-  it = myvector.insert ( it , 200 );
-  myvector.print();
-  myvector.insert (it,2,300);
-  myvector.print();
-
-//  // "it" no longer valid, get a new one:
-//  it = myvector.begin();
-//
-//  ft::vector<int> anothervector (2,400);
-//  myvector.insert (it+2,anothervector.begin(),anothervector.end());
-//
-//  int myarray [] = { 501,502,503 };
-//  myvector.insert (myvector.begin(), myarray, myarray+3);
-//
-//  std::cout << "myvector contains:";
-//  for (it=myvector.begin(); it<myvector.end(); it++)
-//    std::cout << ' ' << *it;
-//  std::cout << '\n';
-
-  return 0;
-
+//  srand(time(NULL));
+  srand(1337);
+  std::map
+  Tree<int> tree;
+  for(int i = 0; i <5; i++) {
+    int elem = rand() % 50;
+    tree.insert(elem);
+    std::cout << "new elem = " << elem << std::endl;
+  }
+  std::cout << "Node height = " << tree.GetHeight(tree.root) << std::endl;
+//  std::cout << "Next same level" << tree.NextNodeSameLevel(tree.root->left)->data << std::endl;
+  tree.printBT(tree.root);
+  tree.delete_one_child(tree.root);
+  tree.printBT(tree.root);
   return 0;
 }

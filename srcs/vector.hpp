@@ -17,8 +17,8 @@ namespace ft {
     typedef typename allocator_type::const_pointer const_pointer;
     typedef ft::random_access_iterator<random_access_iterator_tag, value_type> iterator;
     typedef ft::random_access_iterator<random_access_iterator_tag, value_type> const_iterator;
-    typedef ft::reverse_random_access_iterator<iterator> reverse_iterator;
-    typedef ft::const_reverse_random_access_iterator<const_iterator> const_reverse_iterator;
+    typedef ft::reverse_iterator<iterator> reverse_iterator;
+    typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
     typedef typename iterator::difference_type difference_type;
     typedef size_t size_type;
 
@@ -30,7 +30,7 @@ namespace ft {
 
     template<class InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
-           typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0):
+           typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0):
         allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) { assign(first, last); }
     vector(const vector &x): allocator_(x.allocator_), array_(allocator_.allocate(1)), capacity_(0), size_(0) { *this = x; }
     ~vector() { clear(); allocator_.deallocate(array_, capacity_ ? capacity_ : 1); };
@@ -82,7 +82,7 @@ namespace ft {
 
     template<class InputIterator>
     void assign(InputIterator first, InputIterator last,
-                typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
+                typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
     { clear(); insert(begin(), first, last); };
 
     void assign(size_type n, const value_type &val) { clear(); insert(begin(), n, val); };
@@ -106,7 +106,7 @@ namespace ft {
     };
     template<class InputIterator>
     void insert(iterator position, InputIterator first, InputIterator last,
-                typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0) {
+                typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0) {
       InputIterator tmp = first;
       size_type n = 0;
       size_type index = position - begin();

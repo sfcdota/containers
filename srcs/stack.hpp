@@ -3,7 +3,7 @@
 #include "list.hpp"
 
 namespace ft {
-  template<class T, class Container = ft::list<T> >
+  template<class T, class Container = ft::vector<T> >
   class stack {
     typedef T value_type;
     typedef Container container_type;

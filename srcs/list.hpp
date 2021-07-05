@@ -10,11 +10,11 @@ class list {
   template<class Type>
   struct Node {
     Type data;
-    Node* prev;
-    Node* next;
-    Node* operator++() { return this->next; };
-    Node* operator--() { return this->prev; };
-    Node& operator=(Node *in) {
+    Node *prev;
+    Node *next;
+    Node *operator++() { return this->next; };
+    Node *operator--() { return this->prev; };
+    Node &operator=(Node *in) {
       if (in != this) {
         this->prev = in->prev;
         this->next = in->next;
@@ -22,9 +22,9 @@ class list {
       }
       return *this;
     };
-    Type & operator()() { return this->data; };
-    Node(): prev(this), next(this) { };
-    Node(const Type & data, Node *prev, Node *next): data(data), prev(prev), next(next) { };
+    Type &operator()() { return this->data; };
+    Node() : prev(this), next(this) {};
+    Node(const Type &data, Node *prev, Node *next) : data(data), prev(prev), next(next) {};
   };
 
  public:
@@ -34,10 +34,10 @@ class list {
   typedef typename allocator_type::const_reference const_reference;
   typedef typename allocator_type::pointer pointer;
   typedef typename allocator_type::const_pointer const_pointer;
-  typedef ft::bidirectional_iterator<bidirectional_iterator_tag, value_type, std::ptrdiff_t, Node<value_type>*> iterator;
-  typedef ft::const_bidirectional_iterator<bidirectional_iterator_tag, value_type, std::ptrdiff_t, Node<value_type>*> const_iterator;
+  typedef bidirectional_iterator<bidirectional_iterator_tag, value_type, std::ptrdiff_t, Node<value_type>*> iterator;
+  typedef const_bidirectional_iterator<bidirectional_iterator_tag, value_type, std::ptrdiff_t, Node<value_type>*> const_iterator;
   typedef ft::reverse_iterator<iterator> reverse_iterator;
-  typedef ft::const_reverse_iterator<const_iterator> const_reverse_iterator;
+  typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
   typedef typename iterator::difference_type difference_type;
   typedef size_t size_type;
 
@@ -82,7 +82,7 @@ class list {
 
   template<class InputIterator>
   list(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
-       typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0):
+       typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0):
       allocator_(alloc), end_(NewNode()), size_()
   { assign(first, last); }
 
@@ -118,7 +118,7 @@ class list {
   //Modifiers
   template<class InputIterator>
   void assign(InputIterator first, InputIterator last,
-              typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
+              typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
   { clear(); insert(iterator(end_), first, last); };
 
   void assign(size_type n, const value_type &val) { clear(); insert(iterator(end_), n, val); };
@@ -132,7 +132,7 @@ class list {
 
   template<class InputIterator>
   void insert(iterator position, InputIterator first, InputIterator last,
-              typename enable<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
+              typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
     { for(; first != last; ++first) NewNode(*first, position.GetPtr()); };
 
   iterator erase(iterator position) {

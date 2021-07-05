@@ -4,10 +4,10 @@
 #include "iterator.hpp"
 
 template<bool, class Type = void>
-struct enable {};
+struct enable_if {};
 
 template <class Type>
-struct enable<true, Type>
+struct enable_if<true, Type>
 {
   typedef Type type;
 };
