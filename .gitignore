@@ -1,5 +1,5 @@
 .idea/*
-cmake-build-debug/*
+cmake-build-debug*
 **/log.txt
 **/test
 **/valgrind.txt

@@ -36,13 +36,19 @@ namespace ft {
     ~Node() {};
   };
 
-  template<class T, class Compare, class Alloc = std::allocator<T> >
+  template<class T, class Compare = ft::less<T>, class Alloc = std::allocator<T> >
   class Tree {
    public:
     typedef T value_type;
+    typedef ft::less<T> less;
     typedef Node<value_type> nodeelem;
     typedef Node<value_type> *nodeptr;
     typename Alloc::template rebind<Node<value_type> >::other allocator_;
+
+   private:
+    nodeptr root;
+
+   public:
     Tree() : root(NULL) {}
 
     nodeptr NewNode(const value_type &Data,
@@ -98,13 +104,13 @@ namespace ft {
     }
 
     nodeptr tree_min(nodeptr n) {
-      while (n->left)
+      while (n && n->left)
         n = n->left;
       return n;
     }
 
     nodeptr tree_max(nodeptr n) {
-      while(n->right)
+      while(n && n->right)
         n = n->right;
       return n;
     }
@@ -152,14 +158,6 @@ namespace ft {
       return i;
     }
 
-
-    void PrintTree(nodeptr n) {
-
-      int height = GetHeight(n);
-      int wide = pow(2, height);
-      for (int i = 0; i < height; i++)
-        PrintLevel(n, i, wide);
-    }
 
     void printBT(const std::string& prefix, nodeptr node, bool isLeft)
     {
@@ -233,20 +231,24 @@ namespace ft {
       return n;
     }
 
-    void insert(const value_type & data = value_type()) {
+    nodeptr insert(const value_type & data = value_type()) {
       if (!root)
-        root = NewNode(data, NULL, black);
+        return (root = NewNode(data, NULL, black));
       else {
         nodeptr cur = root;
         nodeptr tmp = root;
-        while ((cur = data >= cur->data ? cur->right : cur->left))
+        while ((cur = less()(data, cur->data) ? cur->left : cur->right))
           tmp = cur;
+        if (!less(data, tmp->data) && !less(tmp->data, data)) {
+          return tmp;
+        }
         cur = NewNode(data, tmp);
-        if (data >= tmp->data)
-          tmp->right = cur;
-        else
+        if (less()(data, cur->data))
           tmp->left = cur;
+        else
+          tmp->right = cur;
         FixInsertion(cur);
+        return cur;
       }
     }
 
@@ -264,8 +266,12 @@ namespace ft {
         n->parent->right = child;
     }
 
+    bool is_leaf(nodeptr n) {
+      return !n || (!n->left && !n->right);
+    }
+
     void delete_one_child (nodeptr n) {
-      nodeptr child = n->right ? n->left : n->right;
+      nodeptr child = is_leaf(n->right) ? n->left : n->right;
       replace_node(n, child);
       if (n->color == black) {
         if (child->color == red)
@@ -334,10 +340,20 @@ namespace ft {
     }
 
 
-    void del (value_type & key) {
+    nodeptr GetNode(value_type & data) {
       nodeptr p = root;
-      while (p->data != key)
-        if (key < p->data)
+      while (p && p->data != data)
+        if (less()(data, p->data))
+          p = p->left;
+        else
+          p = p->right;
+      return p;
+    }
+
+    void del (value_type & data) {
+      nodeptr p = root;
+      while (p->data != data)
+        if (data < p->data)
           p = p->left;
         else
           p = p->right;
@@ -369,12 +385,80 @@ namespace ft {
           p->parent->right = p->right;
       }
       else {
-
+        nodeptr next = next_node(p);
+        if (next->right)
+          next->right->parent = next->parent;
+        if (next == root)
+          root = next->right;
+        else {
+          if (IsLeftChild(next))
+            next->parent->left = next->right;
+          else
+            next->parent->right = next->right;
+        }
+        if (next != p) {
+          p->color = next->color;
+          p->data = next->data;
+        }
+        if (next->color == black)
+          FixDeleting();
       }
     }
 
-
-    nodeptr root;
+    void FixDeleting(nodeptr n) {
+      nodeptr s;
+      while(n->color == black && n != root) {
+        s = sibling(n);
+        if (IsLeftChild(n)) {
+          if (s->color == red) {
+            s->color = black;
+            s->parent = red;
+            rotate_left(s->parent);
+          }
+          if (s->left && s->left->color == black &&
+              s->right && s->right->color == black) {
+            s->color = red;
+          }
+          else {
+            if (s->right->color == black) {
+              s->left->color = black;
+              s->color = red;
+              rotate_right(s);
+            }
+            s->color = s->parent->color;
+            s->parent = black;
+            s->right = black;
+            rotate_left(s->parent);
+            n = root;
+          }
+        }
+        else {
+          if (s->color == red) {
+            s->color = black;
+            s->parent->color = red;
+            rotate_right(n->parent);
+          }
+          if (s->left && s->left->color == black &&
+              s->right && s->right->color == black) {
+            s->color = red;
+          }
+          else {
+            if (s->left->color == black) {
+              s->right->color = black;
+              s->color = red;
+              rotate_left(s);
+            }
+            s = n->parent;
+            n->parent->color = black;
+            s->left = black;
+            rotate_right(n->parent);
+            n = root;
+          }
+        }
+      }
+      n->color = black;
+      root->color = black;
+    }
   };
 }
 #endif //SRCS_TREE_HPP_
