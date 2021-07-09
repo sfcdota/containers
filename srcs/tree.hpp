@@ -45,7 +45,7 @@ namespace ft {
     typedef Node<value_type> *nodeptr;
     typename Alloc::template rebind<Node<value_type> >::other allocator_;
 
-   private:
+//   private:
     nodeptr root;
 
    public:
@@ -239,11 +239,11 @@ namespace ft {
         nodeptr tmp = root;
         while ((cur = less()(data, cur->data) ? cur->left : cur->right))
           tmp = cur;
-        if (!less(data, tmp->data) && !less(tmp->data, data)) {
+        if (!less()(data, tmp->data) && !less()(tmp->data, data)) {
           return tmp;
         }
         cur = NewNode(data, tmp);
-        if (less()(data, cur->data))
+        if (less()(data, tmp->data))
           tmp->left = cur;
         else
           tmp->right = cur;
@@ -340,7 +340,7 @@ namespace ft {
     }
 
 
-    nodeptr GetNode(value_type & data) {
+    nodeptr GetNode(const value_type & data) {
       nodeptr p = root;
       while (p && p->data != data)
         if (less()(data, p->data))
@@ -350,60 +350,51 @@ namespace ft {
       return p;
     }
 
-    void del (value_type & data) {
-      nodeptr p = root;
-      while (p->data != data)
-        if (data < p->data)
-          p = p->left;
-        else
-          p = p->right;
-      if (!p->left && !p->right) {
-        if (p == root)
-          root = NULL;
-        else {
-          if (IsLeftChild(p))
-            p->parent->left = NULL;
-          else
-            p->parent->right = NULL;
-        }
-        allocator_.destroy(p);
+    void del (const value_type & data) {
+      nodeptr p = GetNode(data);
+      if (!p)
         return;
-      }
-      nodeptr y = NULL, q = NULL;
-      if (p->left && !p->right) {//only one child
-        p->left->parent = p->parent;
-        if (IsLeftChild(p))
-          p->parent->left = p->left;
-        else
-          p->parent->right = p->left;
-      }
-      else if (!p->left && p->right) {
-        p->right->parent = p->parent;
-        if (IsLeftChild(p))
-          p->parent->left = p->right;
-        else
-          p->parent->right = p->right;
-      }
+//      if (!p->left && !p->right) {
+//        if (p == root)
+//          root = NULL;
+//        else {
+//          if (IsLeftChild(p))
+//            p->parent->left = NULL;
+//          else
+//            p->parent->right = NULL;
+//        }
+//        allocator_.destroy(p);
+//        return;
+//      }
+      nodeptr y = NULL, x = NULL;
+      if (!p->left || !p->right)
+        y = p;
       else {
-        nodeptr next = next_node(p);
-        if (next->right)
-          next->right->parent = next->parent;
-        if (next == root)
-          root = next->right;
-        else {
-          if (IsLeftChild(next))
-            next->parent->left = next->right;
-          else
-            next->parent->right = next->right;
-        }
-        if (next != p) {
-          p->color = next->color;
-          p->data = next->data;
-        }
-        if (next->color == black)
-          FixDeleting();
+        y = p->right;
+        while (y->left)
+          y = y->left;
       }
+
+      if (y->left)
+        x = y->left;
+      else
+        x = y->right;
+      if (x)
+        x->parent = y->parent;
+      if (y->parent) {
+        if (IsLeftChild(y))
+          y->parent->left = x;
+        else
+          y->parent->right = x;
+      } else
+        root = x;
+      if (y != p)
+        p->data = y->data;
+      if (y->color == black)
+        FixDeleting(x);
+      //allocator destroy <-
     }
+
 
     void FixDeleting(nodeptr n) {
       nodeptr s;
@@ -412,52 +403,57 @@ namespace ft {
         if (IsLeftChild(n)) {
           if (s->color == red) {
             s->color = black;
-            s->parent = red;
-            rotate_left(s->parent);
+            s->parent->color = red;
+            rotate_left(n->parent);
+            s = n->parent->right;
           }
           if (s->left && s->left->color == black &&
               s->right && s->right->color == black) {
             s->color = red;
+            n = n->parent;
           }
           else {
             if (s->right->color == black) {
               s->left->color = black;
               s->color = red;
               rotate_right(s);
+              s = n->parent->right;
             }
-            s->color = s->parent->color;
-            s->parent = black;
-            s->right = black;
-            rotate_left(s->parent);
+            s->color = n->parent->color;
+            n->parent->color = black;
+            s->right->color = black;
+            rotate_left(n->parent);
             n = root;
           }
         }
         else {
           if (s->color == red) {
             s->color = black;
-            s->parent->color = red;
+            n->parent->color = red;
             rotate_right(n->parent);
+            s = n->parent->left;
           }
           if (s->left && s->left->color == black &&
               s->right && s->right->color == black) {
             s->color = red;
+            n = n->parent;
           }
           else {
             if (s->left->color == black) {
               s->right->color = black;
               s->color = red;
               rotate_left(s);
+              s = n->parent->left;
             }
-            s = n->parent;
+            s->color = n->parent->color;
             n->parent->color = black;
-            s->left = black;
+            s->left->color = black;
             rotate_right(n->parent);
             n = root;
           }
         }
       }
       n->color = black;
-      root->color = black;
     }
   };
 }
