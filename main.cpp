@@ -13,8 +13,8 @@ using namespace ft;
 
 int main ()
 {
+
 //  srand(time(NULL));
-std::is_const
 std::vector<int>
   srand(1337);
   Tree<int> tree;

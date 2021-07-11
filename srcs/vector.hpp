@@ -40,9 +40,10 @@ namespace ft {
     template<class InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
            typename enable_if<
-                              has_iterator_category<InputIterator>::value &&
-                              iterator_traits<InputIterator>::iterator_category != output_iterator_tag
-                              !has_iterator_category<>, InputIterator>::type* = 0)
+                              is_input_iterator<InputIterator>::value &&
+                              !is_forward_iterator<InputIterator>::value &&
+                              is_constructioble<value_type, typename iterator_traits<InputIterator>::reference>::value,
+                              InputIterator>::type* = 0)
         : allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0)
     {
       assign(first, last);
