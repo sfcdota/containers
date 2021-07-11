@@ -1,7 +1,7 @@
 
 #ifndef SRCS_IS_INTEGRAL_HPP_
 #define SRCS_IS_INTEGRAL_HPP_
-
+#include "iterator_traits.hpp"
 namespace ft {
   template<class T, T v>
   struct integral_constant {
@@ -35,5 +35,31 @@ namespace ft {
   template <class T> struct remove_const<const T> { typedef T type; };
 
   template <class T> is_integral : public is_integral_template<typename remove_const<T>::type> {};
+
+template<class T> struct is_const : public false_type {};
+template<class T> struct is_const<T const> : public true {};
+
+template<class T> struct is_reference : public false_type {};
+template<class T> struct is_reference<T&> : public true_type {};
+template<class T> struct is_reference<T&&> : public true_type {};
+
+
+
+template<class T> struct is_array : public false_type {};
+template<class T> struct is_array<T[]> : public true_type {};
+template<class T, size_t N> struct is_array<T[N]> : public true_type {};
+
+template<class T> struct is_function : public integral_constant<is_const<T> && !is_reference<T>> {};
+
+
+template<class T> struct is_void_template : public false_type {};
+template<> struct is_void_template<void> : public true_type {};
+template<class T> struct is_void: public is_void_template<typename remove_const<T>::type> {};
+
+template<class Iterator> is_input_iterator: public false_type {};
+template<class Iterator> is_input_iterator<itera
+
 };
+
+
 #endif //SRCS_IS_INTEGRAL_HPP_

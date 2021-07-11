@@ -25,13 +25,29 @@ namespace ft {
     explicit vector(const allocator_type &alloc = allocator_type()) :
         allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) {};
 
-    explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) :
+    explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type(),
+                    ) :
         allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) { assign(n, val); }
+
+//    template<class InputIterator>
+//    vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
+//    typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0)
+//    : allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0)
+//    {
+//      assign(first, last);
+//    }
 
     template<class InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
-           typename enable_if<DetectIterator<InputIterator>::value, InputIterator>::type* = 0):
-        allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) { assign(first, last); }
+           typename enable_if<
+                              has_iterator_category<InputIterator>::value &&
+                              iterator_traits<InputIterator>::iterator_category != output_iterator_tag
+                              !has_iterator_category<>, InputIterator>::type* = 0)
+        : allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0)
+    {
+      assign(first, last);
+    }
+
     vector(const vector &x): allocator_(x.allocator_), array_(allocator_.allocate(1)), capacity_(0), size_(0) { *this = x; }
     ~vector() { clear(); allocator_.deallocate(array_, capacity_ ? capacity_ : 1); };
     vector &operator=(const vector &x) { assign(x.begin(), x.end()); return *this; }

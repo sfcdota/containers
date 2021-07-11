@@ -81,6 +81,7 @@ template <class Iterator>
   typedef typename iterator_traits<Iterator>::difference_type  difference_type;
   typedef typename iterator_traits<Iterator>::pointer   pointer;
   typedef typename iterator_traits<Iterator>::reference reference;
+  typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
 
   reverse_iterator(): current() {}
   reverse_iterator(const pointer & ptr): current(ptr) {}
