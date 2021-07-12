@@ -1,37 +1,64 @@
-./base/map/find/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> mymap;
-  ^
-./base/map/find/patched.cpp:8:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int>::iterator it;
-  ^
-./base/map/find/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
-  mymap['a']=50;
-  ^
-./base/map/find/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
-  mymap['b']=100;
-  ^
-./base/map/find/patched.cpp:12:3: error: use of undeclared identifier 'mymap'
-  mymap['c']=150;
-  ^
-./base/map/find/patched.cpp:13:3: error: use of undeclared identifier 'mymap'
-  mymap['d']=200;
-  ^
-./base/map/find/patched.cpp:15:8: error: use of undeclared identifier 'mymap'
-  it = mymap.find('b');
-       ^
-./base/map/find/patched.cpp:16:13: error: use of undeclared identifier 'mymap'
-  if (it != mymap.end())
-            ^
-./base/map/find/patched.cpp:17:5: error: use of undeclared identifier 'mymap'
-    mymap.erase (it);
-    ^
-./base/map/find/patched.cpp:21:27: error: use of undeclared identifier 'mymap'
+./base/map/find/patched.cpp:21:44: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
   std::cout << "a => " << mymap.find('a')->second << '\n';
-                          ^
-./base/map/find/patched.cpp:22:27: error: use of undeclared identifier 'mymap'
+                          ~~~~~~~~~~~~~~~  ^
+./base/map/find/patched.cpp:22:44: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
   std::cout << "c => " << mymap.find('c')->second << '\n';
-                          ^
-./base/map/find/patched.cpp:23:27: error: use of undeclared identifier 'mymap'
+                          ~~~~~~~~~~~~~~~  ^
+./base/map/find/patched.cpp:23:44: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
   std::cout << "d => " << mymap.find('d')->second << '\n';
-                          ^
-12 errors generated.
+                          ~~~~~~~~~~~~~~~  ^
+In file included from ./base/map/find/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const ft::pair<const char, int>') could not bind to an lvalue of type 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::key_type' (aka 'const char')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/find/patched.cpp:10:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  mymap['a']=50;
+       ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_compare' (aka 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/find/patched.cpp:10:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  mymap['a']=50;
+       ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
+           ^
+../map.hpp:102:53: error: no member named 'find' in 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >'
+    iterator find(const key_type &k) { return tree_.find(k); }
+                                              ~~~~~ ^
+./base/map/find/patched.cpp:15:14: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::find' requested here
+  it = mymap.find('b');
+             ^
+In file included from ./base/map/find/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:344:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->max()());
+                      ^~~~~~~~~~~
+../map.hpp:71:44: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_max' requested here
+    iterator end() { return iterator(tree_.tree_max()); };
+                                           ^
+./base/map/find/patched.cpp:16:19: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::end' requested here
+  if (it != mymap.end())
+                  ^
+In file included from ./base/map/find/patched.cpp:3:
+../map.hpp:93:43: error: no member named 'erase' in 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >'
+    void erase(iterator position) { tree_.erase(position.ptr_); }
+                                    ~~~~~ ^
+./base/map/find/patched.cpp:17:11: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::erase' requested here
+    mymap.erase (it);
+          ^
+In file included from ./base/map/find/patched.cpp:3:
+In file included from ../map.hpp:5:
+../iterator.hpp:59:33: error: cannot initialize return object of type 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::pointer' (aka 'ft::Node<ft::pair<const char, int> > *') with an rvalue of type 'ft::Node<ft::pair<const char, int> >::value_type *' (aka 'ft::pair<const char, int> *')
+  pointer operator->() { return &(*ptr_)(); };
+                                ^~~~~~~~~~
+./base/map/find/patched.cpp:21:42: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator->' requested here
+  std::cout << "a => " << mymap.find('a')->second << '\n';
+                                         ^
+9 errors generated.

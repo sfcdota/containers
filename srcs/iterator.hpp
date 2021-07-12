@@ -1,6 +1,7 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 #include "iterator_traits.hpp"
+
 namespace ft {
 
 template<class Category, class T, class Distance = std::ptrdiff_t,
@@ -14,66 +15,122 @@ struct iterator {
 };
 
 template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
-class const_bidirectional_iterator {
+class const_list_iterator {
  public:
   typedef T         value_type;
   typedef Distance  difference_type;
   typedef Pointer   pointer;
   typedef Reference reference;
   typedef bidirectional_iterator_tag  iterator_category;
-  const_bidirectional_iterator() { ptr_ = NULL; };
-  const_bidirectional_iterator(const pointer & ptr) { ptr_ = ptr; };
-  const_bidirectional_iterator(const const_bidirectional_iterator & in) { *this = in; };
-  const_bidirectional_iterator & operator=(const const_bidirectional_iterator& in) { this->ptr_ = in.ptr_; return *this; };
-  virtual ~const_bidirectional_iterator() {};
-  bool operator==(const const_bidirectional_iterator &r) const { return this->ptr_ == r.ptr_; };
-  bool operator!=(const const_bidirectional_iterator &r) const { return this->ptr_ != r.ptr_; };
-  const reference operator*() { return (*ptr_)(); };
-  const reference operator->() { return (*ptr_)(); };
-  const_bidirectional_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
-  const_bidirectional_iterator operator++(int) { const_bidirectional_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
-  const_bidirectional_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
-  const_bidirectional_iterator operator--(int) { const_bidirectional_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
+  const_list_iterator() { ptr_ = NULL; };
+  const_list_iterator(const pointer & ptr) { ptr_ = ptr; };
+  const_list_iterator(const const_list_iterator & in) { *this = in; };
+  const_list_iterator & operator=(const const_list_iterator& in) { this->ptr_ = in.ptr_; return *this; };
+  virtual ~const_list_iterator() {};
+  bool operator==(const const_list_iterator &r) const { return this->ptr_ == r.ptr_; };
+  bool operator!=(const const_list_iterator &r) const { return this->ptr_ != r.ptr_; };
+  const reference operator*() { return ptr_->data; };
+  const reference operator->() { return &(ptr_->data); };
+  const_list_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
+  const_list_iterator operator++(int) { const_list_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
+  const_list_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
+  const_list_iterator operator--(int) { const_list_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
   pointer GetPtr()  const { return ptr_; }
  protected:
   pointer ptr_;
 };
 
 template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
-class bidirectional_iterator {
+class list_iterator {
  public:
   typedef T         value_type;
   typedef Distance  difference_type;
   typedef Pointer   pointer;
   typedef Reference reference;
   typedef bidirectional_iterator_tag  iterator_category;
-  bidirectional_iterator(): ptr_(NULL) {};
-  explicit bidirectional_iterator(const pointer & ptr): ptr_(ptr) {};
-  bidirectional_iterator(const value_type *ptr): ptr_(ptr) {};
-  bidirectional_iterator(const bidirectional_iterator & in) { *this = in; };
-  bidirectional_iterator & operator=(const bidirectional_iterator& in) { this->ptr_ = in.ptr_; return *this; };
-  virtual ~bidirectional_iterator() {};
-  bool operator==(const bidirectional_iterator &r) const { return this->ptr_ == r.ptr_; };
-  bool operator!=(const bidirectional_iterator &r) const { return this->ptr_ != r.ptr_; };
-  reference operator*() { return (*ptr_)(); };
-  pointer operator->() { return &(*ptr_)(); };
-  bidirectional_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
-  bidirectional_iterator operator++(int) { bidirectional_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
-  bidirectional_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
-  bidirectional_iterator operator--(int) { bidirectional_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
-  operator ft::const_bidirectional_iterator<Category, T>() { return const_bidirectional_iterator<Category, T>(ptr_); }
+  list_iterator(): ptr_(NULL) {};
+  explicit list_iterator(const pointer & ptr): ptr_(ptr) {};
+  list_iterator(const value_type *ptr): ptr_(ptr) {};
+  list_iterator(const list_iterator & in) { *this = in; };
+  list_iterator & operator=(const list_iterator& in) { this->ptr_ = in.ptr_; return *this; };
+  virtual ~list_iterator() {};
+  bool operator==(const list_iterator &r) const { return this->ptr_ == r.ptr_; };
+  bool operator!=(const list_iterator &r) const { return this->ptr_ != r.ptr_; };
+  reference operator*() { return ptr_->data; };
+  pointer operator->() { return &(ptr_->data); };
+  list_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
+  list_iterator operator++(int) { list_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
+  list_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
+  list_iterator operator--(int) { list_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
+  operator ft::const_list_iterator<Category, T>() { return const_list_iterator<Category, T>(ptr_); }
   pointer GetPtr()  const { return ptr_; }
  protected:
   pointer ptr_;
 };
 
+
+template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+class const_map_iterator {
+ public:
+  typedef T         value_type;
+  typedef Distance  difference_type;
+  typedef Pointer   pointer;
+  typedef Reference reference;
+  typedef bidirectional_iterator_tag  iterator_category;
+  const_map_iterator() { ptr_ = NULL; };
+  const_map_iterator(const pointer & ptr) { ptr_ = ptr; };
+  const_map_iterator(const const_map_iterator & in) { *this = in; };
+  const_map_iterator & operator=(const const_map_iterator& in) { this->ptr_ = in.ptr_; return *this; };
+  virtual ~const_map_iterator() {};
+  bool operator==(const const_map_iterator &r) const { return this->ptr_ == r.ptr_; };
+  bool operator!=(const const_map_iterator &r) const { return this->ptr_ != r.ptr_; };
+  const reference operator*() { return ptr_->data; };
+  const reference operator->() { return &(ptr_->data); };
+  const_map_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
+  const_map_iterator operator++(int) { const_map_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
+  const_map_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
+  const_map_iterator operator--(int) { const_map_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
+  pointer GetPtr()  const { return ptr_; }
+ protected:
+  pointer ptr_;
+};
+
+template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+class map_iterator {
+ public:
+  typedef T         value_type;
+  typedef Distance  difference_type;
+  typedef Pointer   pointer;
+  typedef Reference reference;
+  typedef bidirectional_iterator_tag  iterator_category;
+  map_iterator(): ptr_(NULL) {};
+  explicit map_iterator(const pointer & ptr): ptr_(ptr) {};
+  map_iterator(const value_type *ptr): ptr_(ptr) {};
+  map_iterator(const map_iterator & in) { *this = in; };
+  map_iterator & operator=(const map_iterator& in) { this->ptr_ = in.ptr_; return *this; };
+  virtual ~map_iterator() {};
+  bool operator==(const map_iterator &r) const { return this->ptr_ == r.ptr_; };
+  bool operator!=(const map_iterator &r) const { return this->ptr_ != r.ptr_; };
+  reference operator*() { return (*ptr_); };
+  pointer operator->() { return &(*ptr_); };
+  map_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
+  map_iterator operator++(int) { map_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
+  map_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
+  map_iterator operator--(int) { map_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
+  operator ft::const_list_iterator<Category, T>() { return const_list_iterator<Category, T>(ptr_); }
+  pointer GetPtr()  const { return ptr_; }
+ protected:
+  pointer ptr_;
+};
+
+
 template <class Iterator>
- class reverse_iterator
-     : public iterator<typename iterator_traits<Iterator>::iterator_category,
-                       typename iterator_traits<Iterator>::value_type,
-                       typename iterator_traits<Iterator>::difference_type,
-                       typename iterator_traits<Iterator>::pointer,
-                       typename iterator_traits<Iterator>::reference>
+class reverse_iterator
+    : public iterator<typename iterator_traits<Iterator>::iterator_category,
+                      typename iterator_traits<Iterator>::value_type,
+                      typename iterator_traits<Iterator>::difference_type,
+                      typename iterator_traits<Iterator>::pointer,
+                      typename iterator_traits<Iterator>::reference>
 {
  public:
   typedef Iterator iterator_type;
@@ -93,7 +150,7 @@ template <class Iterator>
   reverse_iterator & operator=(const reverse_iterator<T>& in) { current = in.base(); return *this; }
   Iterator base() const { return current; }
   virtual ~reverse_iterator() {};
- //   reference operator*() const { Iterator tmp = current; return *--tmp; };
+  //   reference operator*() const { Iterator tmp = current; return *--tmp; };
   reference operator*() const { Iterator tmp = current; return *(tmp); };
   pointer operator->() const { return &operator*(); };
   reverse_iterator & operator++() { --current; return *this; };
@@ -139,13 +196,13 @@ bool operator<=(const reverse_iterator<Iterator1>& x, const reverse_iterator<Ite
 
 template <class Iterator1, class Iterator2>
 typename reverse_iterator<Iterator1>::difference_type
-  operator-(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
-    return y.base() - x.base();
+operator-(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
+  return y.base() - x.base();
 }
 
 template <class Iterator>
 reverse_iterator<Iterator> operator+(typename reverse_iterator<Iterator>::difference_type n, const reverse_iterator<Iterator>& x) {
-    return reverse_iterator<Iterator>(x.base - n);
+  return reverse_iterator<Iterator>(x.base - n);
 }
 
 

@@ -1,22 +1,113 @@
-./base/map/rbegin_rend/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> mymap;
-  ^
-./base/map/rbegin_rend/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+./base/map/rbegin_rend/patched.cpp:16:23: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << rit->first << " => " << rit->second << '\n';
+                 ~~~  ^
+./base/map/rbegin_rend/patched.cpp:16:47: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << rit->first << " => " << rit->second << '\n';
+                                         ~~~  ^
+In file included from ./base/map/rbegin_rend/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const ft::pair<const char, int>') could not bind to an lvalue of type 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::key_type' (aka 'const char')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/rbegin_rend/patched.cpp:9:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
   mymap['x'] = 100;
-  ^
-./base/map/rbegin_rend/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
-  mymap['y'] = 200;
-  ^
-./base/map/rbegin_rend/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
-  mymap['z'] = 300;
-  ^
-./base/map/rbegin_rend/patched.cpp:14:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int>::reverse_iterator rit;
-  ^
-./base/map/rbegin_rend/patched.cpp:15:12: error: use of undeclared identifier 'mymap'
-  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+       ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_compare' (aka 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/rbegin_rend/patched.cpp:9:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  mymap['x'] = 100;
+       ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
            ^
-./base/map/rbegin_rend/patched.cpp:15:33: error: use of undeclared identifier 'mymap'
+../map.hpp:73:40: error: no viable conversion from returned value of type 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to function return type 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::reverse_iterator' (aka 'reverse_iterator<list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *> >')
+    reverse_iterator rbegin() { return iterator(tree_.tree_max()); };
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./base/map/rbegin_rend/patched.cpp:15:18: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::rbegin' requested here
   for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
-                                ^
-7 errors generated.
+                 ^
+../iterator.hpp:71:8: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> > &' for 1st argument
+ class reverse_iterator
+       ^
+../iterator.hpp:87:3: note: candidate constructor not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >::pointer &' (aka 'ft::Node<ft::pair<const char, int> > *const &') for 1st argument
+  reverse_iterator(const pointer & ptr): current(ptr) {}
+  ^
+../iterator.hpp:90:3: note: candidate template ignored: could not match 'reverse_iterator' against 'list_iterator'
+  reverse_iterator(const reverse_iterator<T> & in): current(in.base()) {}
+  ^
+../iterator.hpp:64:3: note: candidate function
+  operator ft::const_list_iterator<Category, T>() { return const_list_iterator<Category, T>(ptr_); }
+  ^
+In file included from ./base/map/rbegin_rend/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:344:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->max()());
+                      ^~~~~~~~~~~
+../map.hpp:73:55: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_max' requested here
+    reverse_iterator rbegin() { return iterator(tree_.tree_max()); };
+                                                      ^
+./base/map/rbegin_rend/patched.cpp:15:18: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::rbegin' requested here
+  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+                 ^
+In file included from ./base/map/rbegin_rend/patched.cpp:3:
+../map.hpp:75:38: error: no viable conversion from returned value of type 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to function return type 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::reverse_iterator' (aka 'reverse_iterator<list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *> >')
+    reverse_iterator rend() { return iterator(tree_.tree_min()); };
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./base/map/rbegin_rend/patched.cpp:15:39: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::rend' requested here
+  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+                                      ^
+../iterator.hpp:71:8: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> > &' for 1st argument
+ class reverse_iterator
+       ^
+../iterator.hpp:87:3: note: candidate constructor not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >::pointer &' (aka 'ft::Node<ft::pair<const char, int> > *const &') for 1st argument
+  reverse_iterator(const pointer & ptr): current(ptr) {}
+  ^
+../iterator.hpp:90:3: note: candidate template ignored: could not match 'reverse_iterator' against 'list_iterator'
+  reverse_iterator(const reverse_iterator<T> & in): current(in.base()) {}
+  ^
+../iterator.hpp:64:3: note: candidate function
+  operator ft::const_list_iterator<Category, T>() { return const_list_iterator<Category, T>(ptr_); }
+  ^
+In file included from ./base/map/rbegin_rend/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:336:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->min()());
+                      ^~~~~~~~~~~
+../map.hpp:75:53: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_min' requested here
+    reverse_iterator rend() { return iterator(tree_.tree_min()); };
+                                                    ^
+./base/map/rbegin_rend/patched.cpp:15:39: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::rend' requested here
+  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+                                      ^
+In file included from ./base/map/rbegin_rend/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:33:20: error: too many arguments to function call, expected 0, have 1
+        return max(n->left);
+               ~~~ ^~~~~~~
+../iterator.hpp:62:50: note: in instantiation of member function 'ft::Node<ft::pair<const char, int> >::operator--' requested here
+  list_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
+                                                 ^
+../iterator.hpp:99:37: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator--' requested here
+  reverse_iterator & operator++() { --current; return *this; };
+                                    ^
+./base/map/rbegin_rend/patched.cpp:15:47: note: in instantiation of member function 'ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >::operator++' requested here
+  for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+                                              ^
+../tree.hpp:55:5: note: 'max' declared here
+    Node* max() {
+    ^
+In file included from ./base/map/rbegin_rend/patched.cpp:3:
+In file included from ../map.hpp:5:
+../iterator.hpp:98:39: error: cannot initialize return object of type 'ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >::pointer' (aka 'ft::Node<ft::pair<const char, int> > *') with an rvalue of type 'ft::pair<const char, int> *'
+  pointer operator->() const { return &operator*(); };
+                                      ^~~~~~~~~~~~
+./base/map/rbegin_rend/patched.cpp:16:21: note: in instantiation of member function 'ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >::operator->' requested here
+    std::cout << rit->first << " => " << rit->second << '\n';
+                    ^
+10 errors generated.

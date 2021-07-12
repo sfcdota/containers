@@ -1,0 +1,10 @@
+In file included from ./base/list/sort/patched.cpp:3:
+In file included from ../list.hpp:3:
+In file included from ../sfinae.hpp:4:
+../iterator.hpp:58:35: error: called object type 'ft::list_iterator<ft::bidirectional_iterator_tag, std::__cxx11::basic_string<char>, long, ft::list<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::Node<std::__cxx11::basic_string<char> > *, std::__cxx11::basic_string<char> &>::pointer' (aka 'ft::list<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::Node<std::__cxx11::basic_string<char> > *') is not a function or function pointer
+  reference operator*() { return *ptr_(); };
+                                  ^~~~
+./base/list/sort/patched.cpp:32:22: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, std::__cxx11::basic_string<char>, long, ft::list<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::Node<std::__cxx11::basic_string<char> > *, std::__cxx11::basic_string<char> &>::operator*' requested here
+ std::cout << ' ' << *it;
+                     ^
+1 error generated.

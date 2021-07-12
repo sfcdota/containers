@@ -1,40 +1,55 @@
-./base/map/equal_range/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> mymap;
-  ^
-./base/map/equal_range/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
+./base/map/equal_range/patched.cpp:14:7: error: no viable overloaded '='
+  ret = mymap.equal_range('b');
+  ~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:208:12: note: candidate function (the implicit copy assignment operator) not viable: no known conversion from 'pair<ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator>' (aka 'pair<list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>, list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *> >') to 'const std::pair<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>, ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >' for 1st argument
+    struct pair
+           ^
+./base/map/equal_range/patched.cpp:17:27: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+  std::cout << ret.first->first << " => " << ret.first->second << '\n';
+               ~~~~~~~~~  ^
+./base/map/equal_range/patched.cpp:17:57: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+  std::cout << ret.first->first << " => " << ret.first->second << '\n';
+                                             ~~~~~~~~~  ^
+./base/map/equal_range/patched.cpp:20:28: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+  std::cout << ret.second->first << " => " << ret.second->second << '\n';
+               ~~~~~~~~~~  ^
+./base/map/equal_range/patched.cpp:20:59: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+  std::cout << ret.second->first << " => " << ret.second->second << '\n';
+                                              ~~~~~~~~~~  ^
+In file included from ./base/map/equal_range/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const ft::pair<const char, int>') could not bind to an lvalue of type 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::key_type' (aka 'const char')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/equal_range/patched.cpp:9:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
   mymap['a']=10;
-  ^
-./base/map/equal_range/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
-  mymap['b']=20;
-  ^
-./base/map/equal_range/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
-  mymap['c']=30;
-  ^
-./base/map/equal_range/patched.cpp:13:13: error: use of undeclared identifier 'ft'
-  std::pair<ft::map<char,int>::iterator,ft::map<char,int>::iterator> ret;
-            ^
-./base/map/equal_range/patched.cpp:13:60: error: no type named 'iterator' in the global namespace
-  std::pair<ft::map<char,int>::iterator,ft::map<char,int>::iterator> ret;
-                                                         ~~^
-./base/map/equal_range/patched.cpp:13:68: error: expected unqualified-id
-  std::pair<ft::map<char,int>::iterator,ft::map<char,int>::iterator> ret;
-                                                                   ^
-./base/map/equal_range/patched.cpp:14:3: error: use of undeclared identifier 'ret'
+       ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_compare' (aka 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/equal_range/patched.cpp:9:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  mymap['a']=10;
+       ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
+           ^
+../map.hpp:110:76: error: no member named 'equal_range' in 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >'
+    pair<iterator, iterator> equal_range(const key_type &k) { return tree_.equal_range(k); }
+                                                                     ~~~~~ ^
+./base/map/equal_range/patched.cpp:14:15: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::equal_range' requested here
   ret = mymap.equal_range('b');
-  ^
-./base/map/equal_range/patched.cpp:14:9: error: use of undeclared identifier 'mymap'
-  ret = mymap.equal_range('b');
-        ^
-./base/map/equal_range/patched.cpp:17:16: error: use of undeclared identifier 'ret'
+              ^
+In file included from ./base/map/equal_range/patched.cpp:3:
+In file included from ../map.hpp:5:
+../iterator.hpp:59:33: error: cannot initialize return object of type 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::pointer' (aka 'ft::Node<ft::pair<const char, int> > *') with an rvalue of type 'ft::Node<ft::pair<const char, int> >::value_type *' (aka 'ft::pair<const char, int> *')
+  pointer operator->() { return &(*ptr_)(); };
+                                ^~~~~~~~~~
+./base/map/equal_range/patched.cpp:17:25: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator->' requested here
   std::cout << ret.first->first << " => " << ret.first->second << '\n';
-               ^
-./base/map/equal_range/patched.cpp:17:46: error: use of undeclared identifier 'ret'
-  std::cout << ret.first->first << " => " << ret.first->second << '\n';
-                                             ^
-./base/map/equal_range/patched.cpp:20:16: error: use of undeclared identifier 'ret'
-  std::cout << ret.second->first << " => " << ret.second->second << '\n';
-               ^
-./base/map/equal_range/patched.cpp:20:47: error: use of undeclared identifier 'ret'
-  std::cout << ret.second->first << " => " << ret.second->second << '\n';
-                                              ^
-13 errors generated.
+                        ^
+9 errors generated.

@@ -1,55 +1,139 @@
-./base/map/insert/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> mymap;
-  ^
-./base/map/insert/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
+./base/map/insert/patched.cpp:10:9: error: no matching member function for call to 'insert'
   mymap.insert ( std::pair<char,int>('a',100) );
-  ^
-./base/map/insert/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
+  ~~~~~~^~~~~~
+../map.hpp:81:26: note: candidate function not viable: no known conversion from 'std::pair<char, int>' to 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const pair<const char, int>') for 1st argument
+    pair<iterator, bool> insert(const value_type &val) { return tree_.insert(val); }
+                         ^
+../map.hpp:82:14: note: candidate function not viable: requires 2 arguments, but 1 was provided
+    iterator insert(iterator position, const value_type &val) { return iterator(tree_.insert(position.ptr_, val)); }
+             ^
+../map.hpp:84:10: note: candidate function template not viable: requires at least 2 arguments, but 1 was provided
+    void insert(InputIterator first, InputIterator last,
+         ^
+./base/map/insert/patched.cpp:11:9: error: no matching member function for call to 'insert'
   mymap.insert ( std::pair<char,int>('z',200) );
-  ^
-./base/map/insert/patched.cpp:13:13: error: use of undeclared identifier 'ft'
-  std::pair<ft::map<char,int>::iterator,bool> ret;
-            ^
-./base/map/insert/patched.cpp:13:47: error: C++ requires a type specifier for all declarations
-  std::pair<ft::map<char,int>::iterator,bool> ret;
-                                              ^
-./base/map/insert/patched.cpp:14:9: error: use of undeclared identifier 'mymap'
+  ~~~~~~^~~~~~
+../map.hpp:81:26: note: candidate function not viable: no known conversion from 'std::pair<char, int>' to 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const pair<const char, int>') for 1st argument
+    pair<iterator, bool> insert(const value_type &val) { return tree_.insert(val); }
+                         ^
+../map.hpp:82:14: note: candidate function not viable: requires 2 arguments, but 1 was provided
+    iterator insert(iterator position, const value_type &val) { return iterator(tree_.insert(position.ptr_, val)); }
+             ^
+../map.hpp:84:10: note: candidate function template not viable: requires at least 2 arguments, but 1 was provided
+    void insert(InputIterator first, InputIterator last,
+         ^
+./base/map/insert/patched.cpp:14:15: error: no matching member function for call to 'insert'
   ret = mymap.insert ( std::pair<char,int>('z',500) );
-        ^
-./base/map/insert/patched.cpp:21:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int>::iterator it = mymap.begin();
-  ^
-./base/map/insert/patched.cpp:21:36: error: use of undeclared identifier 'mymap'
-  ft::map<char,int>::iterator it = mymap.begin();
-                                   ^
-./base/map/insert/patched.cpp:22:3: error: use of undeclared identifier 'mymap'
+        ~~~~~~^~~~~~
+../map.hpp:81:26: note: candidate function not viable: no known conversion from 'std::pair<char, int>' to 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const pair<const char, int>') for 1st argument
+    pair<iterator, bool> insert(const value_type &val) { return tree_.insert(val); }
+                         ^
+../map.hpp:82:14: note: candidate function not viable: requires 2 arguments, but 1 was provided
+    iterator insert(iterator position, const value_type &val) { return iterator(tree_.insert(position.ptr_, val)); }
+             ^
+../map.hpp:84:10: note: candidate function template not viable: requires at least 2 arguments, but 1 was provided
+    void insert(InputIterator first, InputIterator last,
+         ^
+./base/map/insert/patched.cpp:17:52: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << " with a value of " << ret.first->second << '\n';
+                                        ~~~~~~~~~  ^
+./base/map/insert/patched.cpp:22:9: error: no matching member function for call to 'insert'
   mymap.insert (it, std::pair<char,int>('b',300));  // max efficiency inserting
-  ^
-./base/map/insert/patched.cpp:23:3: error: use of undeclared identifier 'mymap'
+  ~~~~~~^~~~~~
+../map.hpp:82:14: note: candidate function not viable: no known conversion from 'std::pair<char, int>' to 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const pair<const char, int>') for 2nd argument
+    iterator insert(iterator position, const value_type &val) { return iterator(tree_.insert(position.ptr_, val)); }
+             ^
+../map.hpp:84:10: note: candidate template ignored: deduced conflicting types for parameter 'InputIterator' ('ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>' vs. 'std::pair<char, int>')
+    void insert(InputIterator first, InputIterator last,
+         ^
+../map.hpp:81:26: note: candidate function not viable: requires single argument 'val', but 2 arguments were provided
+    pair<iterator, bool> insert(const value_type &val) { return tree_.insert(val); }
+                         ^
+./base/map/insert/patched.cpp:23:9: error: no matching member function for call to 'insert'
   mymap.insert (it, std::pair<char,int>('c',400));  // no max efficiency inserting
-  ^
-./base/map/insert/patched.cpp:26:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> anothermap;
-  ^
-./base/map/insert/patched.cpp:27:3: error: use of undeclared identifier 'anothermap'
+  ~~~~~~^~~~~~
+../map.hpp:82:14: note: candidate function not viable: no known conversion from 'std::pair<char, int>' to 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const pair<const char, int>') for 2nd argument
+    iterator insert(iterator position, const value_type &val) { return iterator(tree_.insert(position.ptr_, val)); }
+             ^
+../map.hpp:84:10: note: candidate template ignored: deduced conflicting types for parameter 'InputIterator' ('ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>' vs. 'std::pair<char, int>')
+    void insert(InputIterator first, InputIterator last,
+         ^
+../map.hpp:81:26: note: candidate function not viable: requires single argument 'val', but 2 arguments were provided
+    pair<iterator, bool> insert(const value_type &val) { return tree_.insert(val); }
+                         ^
+./base/map/insert/patched.cpp:27:14: error: no matching member function for call to 'insert'
   anothermap.insert(mymap.begin(),mymap.find('c'));
-  ^
-./base/map/insert/patched.cpp:27:21: error: use of undeclared identifier 'mymap'
+  ~~~~~~~~~~~^~~~~~
+../map.hpp:82:14: note: candidate function not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const pair<const char, int>') for 2nd argument
+    iterator insert(iterator position, const value_type &val) { return iterator(tree_.insert(position.ptr_, val)); }
+             ^
+../map.hpp:84:10: note: candidate template ignored: requirement 'DetectIterator<int>::value' was not satisfied [with InputIterator = ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>]
+    void insert(InputIterator first, InputIterator last,
+         ^
+../map.hpp:81:26: note: candidate function not viable: requires single argument 'val', but 2 arguments were provided
+    pair<iterator, bool> insert(const value_type &val) { return tree_.insert(val); }
+                         ^
+./base/map/insert/patched.cpp:32:22: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                 ~~  ^
+./base/map/insert/patched.cpp:32:45: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                                        ~~  ^
+./base/map/insert/patched.cpp:36:22: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                 ~~  ^
+./base/map/insert/patched.cpp:36:45: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                                        ~~  ^
+In file included from ./base/map/insert/patched.cpp:3:
+In file included from ../map.hpp:5:
+../iterator.hpp:59:33: error: cannot initialize return object of type 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::pointer' (aka 'ft::Node<ft::pair<const char, int> > *') with an rvalue of type 'ft::Node<ft::pair<const char, int> >::value_type *' (aka 'ft::pair<const char, int> *')
+  pointer operator->() { return &(*ptr_)(); };
+                                ^~~~~~~~~~
+./base/map/insert/patched.cpp:17:50: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator->' requested here
+    std::cout << " with a value of " << ret.first->second << '\n';
+                                                 ^
+In file included from ./base/map/insert/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:336:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->min()());
+                      ^~~~~~~~~~~
+../map.hpp:69:46: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_min' requested here
+    iterator begin() { return iterator(tree_.tree_min()); };
+                                             ^
+./base/map/insert/patched.cpp:21:42: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::begin' requested here
+  ft::map<char,int>::iterator it = mymap.begin();
+                                         ^
+In file included from ./base/map/insert/patched.cpp:3:
+../map.hpp:102:53: error: no member named 'find' in 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >'
+    iterator find(const key_type &k) { return tree_.find(k); }
+                                              ~~~~~ ^
+./base/map/insert/patched.cpp:27:41: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::find' requested here
   anothermap.insert(mymap.begin(),mymap.find('c'));
-                    ^
-./base/map/insert/patched.cpp:27:35: error: use of undeclared identifier 'mymap'
-  anothermap.insert(mymap.begin(),mymap.find('c'));
-                                  ^
-./base/map/insert/patched.cpp:31:11: error: use of undeclared identifier 'mymap'
+                                        ^
+In file included from ./base/map/insert/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:344:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->max()());
+                      ^~~~~~~~~~~
+../map.hpp:71:44: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_max' requested here
+    iterator end() { return iterator(tree_.tree_max()); };
+                                           ^
+./base/map/insert/patched.cpp:31:36: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::end' requested here
   for (it=mymap.begin(); it!=mymap.end(); ++it)
-          ^
-./base/map/insert/patched.cpp:31:30: error: use of undeclared identifier 'mymap'
+                                   ^
+In file included from ./base/map/insert/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:25:20: error: too many arguments to function call, expected 0, have 1
+        return min(n->right);
+               ~~~ ^~~~~~~~
+../iterator.hpp:60:50: note: in instantiation of member function 'ft::Node<ft::pair<const char, int> >::operator++' requested here
+  list_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
+                                                 ^
+./base/map/insert/patched.cpp:31:43: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator++' requested here
   for (it=mymap.begin(); it!=mymap.end(); ++it)
-                             ^
-./base/map/insert/patched.cpp:35:11: error: use of undeclared identifier 'anothermap'
-  for (it=anothermap.begin(); it!=anothermap.end(); ++it)
-          ^
-./base/map/insert/patched.cpp:35:35: error: use of undeclared identifier 'anothermap'
-  for (it=anothermap.begin(); it!=anothermap.end(); ++it)
-                                  ^
-18 errors generated.
+                                          ^
+../tree.hpp:49:5: note: 'min' declared here
+    Node* min() {
+    ^
+16 errors generated.

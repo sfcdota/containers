@@ -1,47 +1,85 @@
-./base/map/swap/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> foo,bar;
-  ^
-./base/map/swap/patched.cpp:9:3: error: use of undeclared identifier 'foo'
+./base/map/swap/patched.cpp:20:22: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                 ~~  ^
+./base/map/swap/patched.cpp:20:45: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                                        ~~  ^
+./base/map/swap/patched.cpp:24:22: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                 ~~  ^
+./base/map/swap/patched.cpp:24:45: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                                        ~~  ^
+In file included from ./base/map/swap/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const ft::pair<const char, int>') could not bind to an lvalue of type 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::key_type' (aka 'const char')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/swap/patched.cpp:9:6: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
   foo['x']=100;
-  ^
-./base/map/swap/patched.cpp:10:3: error: use of undeclared identifier 'foo'
-  foo['y']=200;
-  ^
-./base/map/swap/patched.cpp:12:3: error: use of undeclared identifier 'bar'
-  bar['a']=11;
-  ^
-./base/map/swap/patched.cpp:13:3: error: use of undeclared identifier 'bar'
-  bar['b']=22;
-  ^
-./base/map/swap/patched.cpp:14:3: error: use of undeclared identifier 'bar'
-  bar['c']=33;
-  ^
-./base/map/swap/patched.cpp:16:3: error: use of undeclared identifier 'foo'
-  foo.swap(bar);
-  ^
-./base/map/swap/patched.cpp:16:12: error: use of undeclared identifier 'bar'
-  foo.swap(bar);
+     ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_compare' (aka 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/swap/patched.cpp:9:6: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  foo['x']=100;
+     ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
            ^
-./base/map/swap/patched.cpp:19:8: error: use of undeclared identifier 'ft'
+../map.hpp:98:32: error: no member named 'swap' in 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >'
+    void swap(map &xx) { tree_.swap(xx.tree_); }
+                         ~~~~~ ^
+./base/map/swap/patched.cpp:16:7: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::swap' requested here
+  foo.swap(bar);
+      ^
+In file included from ./base/map/swap/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:336:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->min()());
+                      ^~~~~~~~~~~
+../map.hpp:69:46: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_min' requested here
+    iterator begin() { return iterator(tree_.tree_min()); };
+                                             ^
+./base/map/swap/patched.cpp:19:43: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::begin' requested here
   for (ft::map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
-       ^
-./base/map/swap/patched.cpp:19:39: error: use of undeclared identifier 'foo'; did you mean 'for'?
+                                          ^
+In file included from ./base/map/swap/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:344:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->max()());
+                      ^~~~~~~~~~~
+../map.hpp:71:44: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_max' requested here
+    iterator end() { return iterator(tree_.tree_max()); };
+                                           ^
+./base/map/swap/patched.cpp:19:60: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::end' requested here
   for (ft::map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
-                                      ^~~
-                                      for
-./base/map/swap/patched.cpp:19:39: error: expected expression
-./base/map/swap/patched.cpp:19:56: error: use of undeclared identifier 'foo'; did you mean 'for'?
+                                                           ^
+In file included from ./base/map/swap/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:25:20: error: too many arguments to function call, expected 0, have 1
+        return min(n->right);
+               ~~~ ^~~~~~~~
+../iterator.hpp:60:50: note: in instantiation of member function 'ft::Node<ft::pair<const char, int> >::operator++' requested here
+  list_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
+                                                 ^
+./base/map/swap/patched.cpp:19:67: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator++' requested here
   for (ft::map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
-                                                       ^~~
-                                                       for
-./base/map/swap/patched.cpp:19:56: error: expected expression
-./base/map/swap/patched.cpp:23:8: error: use of undeclared identifier 'ft'
-  for (ft::map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
-       ^
-./base/map/swap/patched.cpp:23:39: error: use of undeclared identifier 'bar'
-  for (ft::map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
-                                      ^
-./base/map/swap/patched.cpp:23:56: error: use of undeclared identifier 'bar'
-  for (ft::map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
-                                                       ^
-16 errors generated.
+                                                                  ^
+../tree.hpp:49:5: note: 'min' declared here
+    Node* min() {
+    ^
+In file included from ./base/map/swap/patched.cpp:3:
+In file included from ../map.hpp:5:
+../iterator.hpp:59:33: error: cannot initialize return object of type 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::pointer' (aka 'ft::Node<ft::pair<const char, int> > *') with an rvalue of type 'ft::Node<ft::pair<const char, int> >::value_type *' (aka 'ft::pair<const char, int> *')
+  pointer operator->() { return &(*ptr_)(); };
+                                ^~~~~~~~~~
+./base/map/swap/patched.cpp:20:20: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator->' requested here
+    std::cout << it->first << " => " << it->second << '\n';
+                   ^
+11 errors generated.

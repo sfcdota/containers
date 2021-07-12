@@ -1,10 +1,30 @@
-./base/map/max_size/patched.cpp:8:3: error: use of undeclared identifier 'ft'
-  ft::map<int,int> mymap;
-  ^
-./base/map/max_size/patched.cpp:10:7: error: use of undeclared identifier 'mymap'
+In file included from ./base/map/max_size/patched.cpp:3:
+../map.hpp:79:47: error: no member named 'max_size' in 'ft::tree<ft::pair<const int, int>, ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::value_compare, std::allocator<ft::pair<const int, int> > >'
+    size_type max_size() const { return tree_.max_size(); }
+                                        ~~~~~ ^
+./base/map/max_size/patched.cpp:10:13: note: in instantiation of member function 'ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::max_size' requested here
   if (mymap.max_size()>1000)
-      ^
-./base/map/max_size/patched.cpp:12:28: error: use of undeclared identifier 'mymap'
+            ^
+In file included from ./base/map/max_size/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const int, int>, ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::value_compare, std::allocator<ft::pair<const int, int> > >::value_type' (aka 'const ft::pair<const int, int>') could not bind to an lvalue of type 'const ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::key_type' (aka 'const int')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/max_size/patched.cpp:12:33: note: in instantiation of member function 'ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::operator[]' requested here
     for (i=0; i<1000; i++) mymap[i]=0;
-                           ^
+                                ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const int, int>, ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::value_compare, std::allocator<ft::pair<const int, int> > >::value_compare' (aka 'ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const int, int>, ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::value_compare, std::allocator<ft::pair<const int, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/max_size/patched.cpp:12:33: note: in instantiation of member function 'ft::map<int, int, ft::less<int>, std::allocator<ft::pair<const int, int> > >::operator[]' requested here
+    for (i=0; i<1000; i++) mymap[i]=0;
+                                ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
+           ^
 3 errors generated.

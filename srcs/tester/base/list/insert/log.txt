@@ -1,0 +1,10 @@
+In file included from ./base/list/insert/patched.cpp:3:
+In file included from ../list.hpp:3:
+In file included from ../sfinae.hpp:4:
+../iterator.hpp:58:35: error: called object type 'ft::list_iterator<ft::bidirectional_iterator_tag, int, long, ft::list<int, std::allocator<int> >::Node<int> *, int &>::pointer' (aka 'ft::list<int, std::allocator<int> >::Node<int> *') is not a function or function pointer
+  reference operator*() { return *ptr_(); };
+                                  ^~~~
+./base/list/insert/patched.cpp:30:22: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, int, long, ft::list<int, std::allocator<int> >::Node<int> *, int &>::operator*' requested here
+ std::cout << ' ' << *it;
+                     ^
+1 error generated.

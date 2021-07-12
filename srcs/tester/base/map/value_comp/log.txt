@@ -1,25 +1,107 @@
-./base/map/value_comp/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> mymap;
-  ^
-./base/map/value_comp/patched.cpp:9:3: error: use of undeclared identifier 'mymap'
-  mymap['x']=1001;
-  ^
-./base/map/value_comp/patched.cpp:10:3: error: use of undeclared identifier 'mymap'
-  mymap['y']=2002;
-  ^
-./base/map/value_comp/patched.cpp:11:3: error: use of undeclared identifier 'mymap'
-  mymap['z']=3003;
-  ^
-./base/map/value_comp/patched.cpp:15:34: error: use of undeclared identifier 'mymap'
+./base/map/value_comp/patched.cpp:15:23: error: no viable conversion from 'ft::pair<const char, int>' to 'std::pair<char, int>'
   std::pair<char,int> highest = *mymap.rbegin();          // last element
-                                 ^
-./base/map/value_comp/patched.cpp:17:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int>::iterator it = mymap.begin();
+                      ^         ~~~~~~~~~~~~~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:208:12: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'ft::pair<const char, int>' to 'const std::pair<char, int> &' for 1st argument
+    struct pair
+           ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:276:2: note: candidate template ignored: could not match 'std::pair' against 'ft::pair'
+        pair(const pair<_U1, _U2>& __p)
+        ^
+./base/map/value_comp/patched.cpp:19:22: error: no member named 'first' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                 ~~  ^
+./base/map/value_comp/patched.cpp:19:45: error: no member named 'second' in 'ft::Node<ft::pair<const char, int> >'
+    std::cout << it->first << " => " << it->second << '\n';
+                                        ~~  ^
+In file included from ./base/map/value_comp/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const ft::pair<const char, int>') could not bind to an lvalue of type 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::key_type' (aka 'const char')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/value_comp/patched.cpp:9:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  mymap['x']=1001;
+       ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_compare' (aka 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/value_comp/patched.cpp:9:8: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  mymap['x']=1001;
+       ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
+           ^
+../map.hpp:73:40: error: no viable conversion from returned value of type 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to function return type 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::reverse_iterator' (aka 'reverse_iterator<list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *> >')
+    reverse_iterator rbegin() { return iterator(tree_.tree_max()); };
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./base/map/value_comp/patched.cpp:15:40: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::rbegin' requested here
+  std::pair<char,int> highest = *mymap.rbegin();          // last element
+                                       ^
+../iterator.hpp:71:8: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> > &' for 1st argument
+ class reverse_iterator
+       ^
+../iterator.hpp:87:3: note: candidate constructor not viable: no known conversion from 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::iterator' (aka 'list_iterator<ft::bidirectional_iterator_tag, pair<const char, int>, long, Node<pair<const char, int> > *>') to 'const ft::reverse_iterator<ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &> >::pointer &' (aka 'ft::Node<ft::pair<const char, int> > *const &') for 1st argument
+  reverse_iterator(const pointer & ptr): current(ptr) {}
   ^
-./base/map/value_comp/patched.cpp:17:36: error: use of undeclared identifier 'mymap'
+../iterator.hpp:90:3: note: candidate template ignored: could not match 'reverse_iterator' against 'list_iterator'
+  reverse_iterator(const reverse_iterator<T> & in): current(in.base()) {}
+  ^
+../iterator.hpp:64:3: note: candidate function
+  operator ft::const_list_iterator<Category, T>() { return const_list_iterator<Category, T>(ptr_); }
+  ^
+In file included from ./base/map/value_comp/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:344:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->max()());
+                      ^~~~~~~~~~~
+../map.hpp:73:55: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_max' requested here
+    reverse_iterator rbegin() { return iterator(tree_.tree_max()); };
+                                                      ^
+./base/map/value_comp/patched.cpp:15:40: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::rbegin' requested here
+  std::pair<char,int> highest = *mymap.rbegin();          // last element
+                                       ^
+In file included from ./base/map/value_comp/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:336:23: error: called object type 'ft::Node<ft::pair<const char, int> > *' is not a function or function pointer
+      return iterator(root->min()());
+                      ^~~~~~~~~~~
+../map.hpp:69:46: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::tree_min' requested here
+    iterator begin() { return iterator(tree_.tree_min()); };
+                                             ^
+./base/map/value_comp/patched.cpp:17:42: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::begin' requested here
   ft::map<char,int>::iterator it = mymap.begin();
-                                   ^
-./base/map/value_comp/patched.cpp:20:13: error: use of undeclared identifier 'mymap'
+                                         ^
+In file included from ./base/map/value_comp/patched.cpp:3:
+In file included from ../map.hpp:5:
+../iterator.hpp:59:33: error: cannot initialize return object of type 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::pointer' (aka 'ft::Node<ft::pair<const char, int> > *') with an rvalue of type 'ft::Node<ft::pair<const char, int> >::value_type *' (aka 'ft::pair<const char, int> *')
+  pointer operator->() { return &(*ptr_)(); };
+                                ^~~~~~~~~~
+./base/map/value_comp/patched.cpp:19:20: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator->' requested here
+    std::cout << it->first << " => " << it->second << '\n';
+                   ^
+In file included from ./base/map/value_comp/patched.cpp:3:
+../map.hpp:101:67: error: no member named 'value_comp' in 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >'
+    value_compare value_comp() const { return value_compare(tree_.value_comp().key_comp()); }
+                                                            ~~~~~ ^
+./base/map/value_comp/patched.cpp:20:19: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_comp' requested here
   } while ( mymap.value_comp()(*it++, highest) );
-            ^
-8 errors generated.
+                  ^
+In file included from ./base/map/value_comp/patched.cpp:3:
+In file included from ../map.hpp:6:
+../tree.hpp:25:20: error: too many arguments to function call, expected 0, have 1
+        return min(n->right);
+               ~~~ ^~~~~~~~
+../iterator.hpp:61:86: note: in instantiation of member function 'ft::Node<ft::pair<const char, int> >::operator++' requested here
+  list_iterator operator++(int) { list_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
+                                                                                     ^
+./base/map/value_comp/patched.cpp:20:35: note: in instantiation of member function 'ft::list_iterator<ft::bidirectional_iterator_tag, ft::pair<const char, int>, long, ft::Node<ft::pair<const char, int> > *, ft::pair<const char, int> &>::operator++' requested here
+  } while ( mymap.value_comp()(*it++, highest) );
+                                  ^
+../tree.hpp:49:5: note: 'min' declared here
+    Node* min() {
+    ^
+11 errors generated.

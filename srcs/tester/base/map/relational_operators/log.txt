@@ -1,51 +1,251 @@
-./base/map/relational_operators/patched.cpp:7:3: error: use of undeclared identifier 'ft'
-  ft::map<char,int> foo,bar;
-  ^
-./base/map/relational_operators/patched.cpp:8:3: error: use of undeclared identifier 'foo'
-  foo['a']=100;
-  ^
-./base/map/relational_operators/patched.cpp:9:3: error: use of undeclared identifier 'foo'
-  foo['b']=200;
-  ^
-./base/map/relational_operators/patched.cpp:10:3: error: use of undeclared identifier 'bar'
-  bar['a']=10;
-  ^
-./base/map/relational_operators/patched.cpp:11:3: error: use of undeclared identifier 'bar'
-  bar['z']=1000;
-  ^
-./base/map/relational_operators/patched.cpp:14:7: error: use of undeclared identifier 'foo'
+./base/map/relational_operators/patched.cpp:14:10: error: invalid operands to binary expression ('ft::map<char, int>' and 'ft::map<char, int>')
   if (foo==bar) std::cout << "foo and bar are equal\n";
+      ~~~^ ~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/allocator.h:156:7: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const std::allocator<ft::pair<const char, int> >' for 1st argument
+      operator==(const allocator&, const allocator&) _GLIBCXX_NOTHROW
       ^
-./base/map/relational_operators/patched.cpp:14:12: error: use of undeclared identifier 'bar'
-  if (foo==bar) std::cout << "foo and bar are equal\n";
-           ^
-./base/map/relational_operators/patched.cpp:15:7: error: use of undeclared identifier 'foo'
+../Utils.hpp:104:17: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const pair<const char, int>' for 1st argument
+    friend bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+                ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/postypes.h:222:5: note: candidate template ignored: could not match 'fpos' against 'map'
+    operator==(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:448:5: note: candidate template ignored: could not match 'pair' against 'map'
+    operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:325:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator==(const reverse_iterator<_Iterator>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:363:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator==(const reverse_iterator<_IteratorL>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:886:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator==(const __normal_iterator<_IteratorL, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:893:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator==(const __normal_iterator<_Iterator, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/ext/new_allocator.h:167:2: note: candidate template ignored: could not match 'new_allocator' against 'map'
+        operator==(const new_allocator&, const new_allocator<_Up>&)
+        ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/allocator.h:168:5: note: candidate template ignored: could not match 'allocator' against 'map'
+    operator==(const allocator<_T1>&, const allocator<_T2>&)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6141:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6149:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator==(const basic_string<_CharT>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6163:5: note: candidate template ignored: could not match 'const _CharT *' against 'ft::map<char, int>'
+    operator==(const _CharT* __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6175:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/streambuf_iterator.h:208:5: note: candidate template ignored: could not match 'istreambuf_iterator' against 'map'
+    operator==(const istreambuf_iterator<_CharT, _Traits>& __a,
+    ^
+./base/map/relational_operators/patched.cpp:15:10: error: invalid operands to binary expression ('ft::map<char, int>' and 'ft::map<char, int>')
   if (foo!=bar) std::cout << "foo and bar are not equal\n";
+      ~~~^ ~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/allocator.h:160:7: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const std::allocator<ft::pair<const char, int> >' for 1st argument
+      operator!=(const allocator&, const allocator&) _GLIBCXX_NOTHROW
       ^
-./base/map/relational_operators/patched.cpp:15:12: error: use of undeclared identifier 'bar'
-  if (foo!=bar) std::cout << "foo and bar are not equal\n";
-           ^
-./base/map/relational_operators/patched.cpp:16:7: error: use of undeclared identifier 'foo'; did you mean 'for'?
+../Utils.hpp:107:17: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const pair<const char, int>' for 1st argument
+    friend bool operator!= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return !(lhs == rhs); };
+                ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/postypes.h:227:5: note: candidate template ignored: could not match 'fpos' against 'map'
+    operator!=(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:461:5: note: candidate template ignored: could not match 'pair' against 'map'
+    operator!=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:337:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator!=(const reverse_iterator<_Iterator>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:375:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator!=(const reverse_iterator<_IteratorL>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:900:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator!=(const __normal_iterator<_IteratorL, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:907:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/ext/new_allocator.h:173:2: note: candidate template ignored: could not match 'new_allocator' against 'map'
+        operator!=(const new_allocator&, const new_allocator<_Up>&)
+        ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/allocator.h:174:5: note: candidate template ignored: could not match 'allocator' against 'map'
+    operator!=(const allocator<_T1>&, const allocator<_T2>&)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6188:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6201:5: note: candidate template ignored: could not match 'const _CharT *' against 'ft::map<char, int>'
+    operator!=(const _CharT* __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6213:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/streambuf_iterator.h:214:5: note: candidate template ignored: could not match 'istreambuf_iterator' against 'map'
+    operator!=(const istreambuf_iterator<_CharT, _Traits>& __a,
+    ^
+../iterator.hpp:121:6: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+bool operator!=(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
+     ^
+./base/map/relational_operators/patched.cpp:16:10: error: invalid operands to binary expression ('ft::map<char, int>' and 'ft::map<char, int>')
   if (foo< bar) std::cout << "foo is less than bar\n";
-      ^~~
-      for
-./base/map/relational_operators/patched.cpp:16:7: error: expected expression
-./base/map/relational_operators/patched.cpp:17:7: error: use of undeclared identifier 'foo'
+      ~~~^ ~~~
+../Utils.hpp:109:17: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const pair<const char, int>' for 1st argument
+    friend bool operator<  (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+                ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:454:5: note: candidate template ignored: could not match 'pair' against 'map'
+    operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:331:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator<(const reverse_iterator<_Iterator>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:369:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator<(const reverse_iterator<_IteratorL>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:915:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator<(const __normal_iterator<_IteratorL, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:922:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator<(const __normal_iterator<_Iterator, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6226:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6239:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6251:5: note: candidate template ignored: could not match 'const _CharT *' against 'ft::map<char, int>'
+    operator<(const _CharT* __lhs,
+    ^
+../iterator.hpp:116:6: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+bool operator<(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
+     ^
+./base/map/relational_operators/patched.cpp:17:10: error: invalid operands to binary expression ('ft::map<char, int>' and 'ft::map<char, int>')
   if (foo> bar) std::cout << "foo is greater than bar\n";
-      ^
-./base/map/relational_operators/patched.cpp:17:12: error: use of undeclared identifier 'bar'
-  if (foo> bar) std::cout << "foo is greater than bar\n";
-           ^
-./base/map/relational_operators/patched.cpp:18:7: error: use of undeclared identifier 'foo'
+      ~~~^ ~~~
+../Utils.hpp:114:17: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const pair<const char, int>' for 1st argument
+    friend bool operator>  (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return rhs<lhs; }
+                ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:467:5: note: candidate template ignored: could not match 'pair' against 'map'
+    operator>(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:343:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator>(const reverse_iterator<_Iterator>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:381:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator>(const reverse_iterator<_IteratorL>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:929:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator>(const __normal_iterator<_IteratorL, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:936:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator>(const __normal_iterator<_Iterator, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6264:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6277:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6289:5: note: candidate template ignored: could not match 'const _CharT *' against 'ft::map<char, int>'
+    operator>(const _CharT* __lhs,
+    ^
+../iterator.hpp:126:6: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+bool operator>(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
+     ^
+./base/map/relational_operators/patched.cpp:18:10: error: invalid operands to binary expression ('ft::map<char, int>' and 'ft::map<char, int>')
   if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
-      ^
-./base/map/relational_operators/patched.cpp:18:12: error: use of undeclared identifier 'bar'
-  if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
-           ^
-./base/map/relational_operators/patched.cpp:19:7: error: use of undeclared identifier 'foo'
+      ~~~^ ~~~
+../Utils.hpp:112:17: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const pair<const char, int>' for 1st argument
+    friend bool operator<= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return !(rhs<lhs); }
+                ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:473:5: note: candidate template ignored: could not match 'pair' against 'map'
+    operator<=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:349:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator<=(const reverse_iterator<_Iterator>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:387:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator<=(const reverse_iterator<_IteratorL>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:943:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator<=(const __normal_iterator<_IteratorL, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:950:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator<=(const __normal_iterator<_Iterator, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6302:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator<=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6315:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator<=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6327:5: note: candidate template ignored: could not match 'const _CharT *' against 'ft::map<char, int>'
+    operator<=(const _CharT* __lhs,
+    ^
+../iterator.hpp:136:6: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+bool operator<=(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
+     ^
+./base/map/relational_operators/patched.cpp:19:10: error: invalid operands to binary expression ('ft::map<char, int>' and 'ft::map<char, int>')
   if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
-      ^
-./base/map/relational_operators/patched.cpp:19:12: error: use of undeclared identifier 'bar'
-  if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+      ~~~^ ~~~
+../Utils.hpp:116:17: note: candidate function not viable: no known conversion from 'ft::map<char, int>' to 'const pair<const char, int>' for 1st argument
+    friend bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return !(lhs<rhs); }
+                ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_pair.h:479:5: note: candidate template ignored: could not match 'pair' against 'map'
+    operator>=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:355:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator>=(const reverse_iterator<_Iterator>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:393:5: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+    operator>=(const reverse_iterator<_IteratorL>& __x,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:957:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator>=(const __normal_iterator<_IteratorL, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_iterator.h:964:5: note: candidate template ignored: could not match '__normal_iterator' against 'map'
+    operator>=(const __normal_iterator<_Iterator, _Container>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6340:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator>=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6353:5: note: candidate template ignored: could not match 'basic_string' against 'map'
+    operator>=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+    ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/basic_string.h:6365:5: note: candidate template ignored: could not match 'const _CharT *' against 'ft::map<char, int>'
+    operator>=(const _CharT* __lhs,
+    ^
+../iterator.hpp:131:6: note: candidate template ignored: could not match 'reverse_iterator' against 'map'
+bool operator>=(const reverse_iterator<Iterator1>& x, const reverse_iterator<Iterator2>& y) {
+     ^
+In file included from ./base/map/relational_operators/patched.cpp:3:
+../map.hpp:80:71: error: reference to type 'const ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_type' (aka 'const ft::pair<const char, int>') could not bind to an lvalue of type 'const ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::key_type' (aka 'const char')
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                                      ^
+./base/map/relational_operators/patched.cpp:8:6: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  foo['a']=100;
+     ^
+../tree.hpp:425:40: note: passing argument to parameter 'data' here
+    nodeptr GetNode(const value_type & data) {
+                                       ^
+../tree.hpp:428:13: error: no matching function for call to object of type 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::value_compare' (aka 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare')
+        if (compare_()(data, p->data))
+            ^~~~~~~~
+../map.hpp:80:63: note: in instantiation of member function 'ft::tree<ft::pair<const char, int>, ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::value_compare, std::allocator<ft::pair<const char, int> > >::GetNode' requested here
+    mapped_type &operator[](const key_type &k) { return tree_.GetNode(k)->data; }
+                                                              ^
+./base/map/relational_operators/patched.cpp:8:6: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::operator[]' requested here
+  foo['a']=100;
+     ^
+../map.hpp:28:12: note: candidate function not viable: requires 2 arguments, but 0 were provided
+      bool operator() (const value_type& x, const value_type& y) const
            ^
-17 errors generated.
+8 errors generated.
