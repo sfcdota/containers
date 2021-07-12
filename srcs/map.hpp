@@ -4,15 +4,25 @@
 #include "Utils.hpp"
 namespace ft {
 
-  template<class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator<ft::pair<const Key, T> >
+  template<class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator<ft::pair<const Key, T> > >
   class map {
    public:
     typedef Key key_type;
     typedef T mapped_type;
     typedef ft::pair<const key_type, mapped_type> value_type;
-    typedef ft::less<key_type> key_compare;
-    ////////////////////typedef value_compare nullptr;
-    typedef allocator<value_type> allocator_type;
+    typedef Compare key_compare;
+
+    class value_compare: public binary_function<value_type, value_type, bool>  {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+      friend class map;
+     protected:
+      key_compare comp;
+      value_compare (key_compare c) : comp(c) {}  // constructed with map's comparison object
+     public:
+      bool operator() (const value_type& x, const value_type& y) const
+      { return comp(x.first, y.first); }
+    };
+
+    typedef typename Alloc::template rebind<Node<value_type> >::other allocator_type;
     typedef typename allocator_type::reference reference;
     typedef typename allocator_type::const_reference const_reference;
     typedef typename allocator_type::pointer pointer;
@@ -22,32 +32,57 @@ namespace ft {
     typedef ft::const_bidirectional_iterator<bidirectional_iterator_tag, value_type, std::ptrdiff_t, Node<value_type> * >
         const_iterator;
     typedef ft::reverse_iterator<iterator> reverse_iterator;
-    typedef ft::const_reverse_iterator<const_iterator> const_reverse_iterator;
-    typedef difference_type ptrdiff_t;
-    typedef size_type size_t;
+    typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
+    typedef ptrdiff_t difference_type ;
+    typedef size_t size_type;
 
    private:
-    Alloc allocator_;
-
+    allocator_type allocator_;
+    key_compare kcomp;
+    typedef Node<T>* nodeptr;
+    nodeptr end_;
+    Tree<T, Compare, Alloc> tree_;
 
 
    public:
     explicit map(const key_compare &comp = key_compare(),
-                 const allocator_type &alloc = allocator_type());
+                 const allocator_type &alloc = allocator_type()): allocator_(alloc), kcomp(comp) {
+
+    }
     template<class InputIterator>
-    map(InputIterator fisrt, InputIterator last,
+    map(InputIterator first, InputIterator last,
         const key_compare &comp = key_compare(),
-        const allocator_type &alloc = allocator_type());
-    map(cosnt map &x);
-    ~map();
-    map &operator=(const map &x);
-    iterator begin();
-    const_iterator begin() const;
-    iterator end();
-    const_iterator end() const;
-    reverse_iterator rbegin();
-    const_reverse_iterator rbegin() const;
-    reverse_iterator rend();
+        const allocator_type &alloc = allocator_type()):allocator_(alloc), kcomp(comp) {
+      insert(first, last);
+    }
+    map(const map &x) {
+      *this = x;
+    }
+    ~map() {};
+    map &operator=(const map &x) {
+      this->kcomp = x.kcomp;
+    }
+    iterator begin() {
+
+    }
+    const_iterator begin() const {
+
+    }
+    iterator end() {
+
+    }
+    const_iterator end() const {
+
+    }
+    reverse_iterator rbegin() {
+
+    }
+    const_reverse_iterator rbegin() const {
+
+    }
+    reverse_iterator rend() {
+
+    }
     const_reverse_iterator rend() const;
     bool empty() const;
     size_type size() const;
@@ -71,7 +106,7 @@ namespace ft {
     const_iterator lower_bound(const key_type &k) const;
     iterator upper_bound(const key_type &k);
     const_iterator upper_bound(const key_type &k) const;
-    pair<const_iterator, const_iterator> equal_range(const key_Type &k) const;
+    pair<const_iterator, const_iterator> equal_range(const key_type &k) const;
     pair<iterator, iterator> equal_range(const key_type &k);
 
   };

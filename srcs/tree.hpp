@@ -239,7 +239,7 @@ namespace ft {
         nodeptr tmp = root;
         while ((cur = less()(data, cur->data) ? cur->left : cur->right))
           tmp = cur;
-        if (!less(data, tmp->data) && !less(tmp->data, data)) {
+        if (!less()(data, tmp->data) && !less()(tmp->data, data)) {
           return tmp;
         }
         cur = NewNode(data, tmp);
