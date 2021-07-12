@@ -25,8 +25,7 @@ namespace ft {
     explicit vector(const allocator_type &alloc = allocator_type()) :
         allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) {};
 
-    explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type(),
-                    ) :
+    explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) :
         allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0) { assign(n, val); }
 
 //    template<class InputIterator>
@@ -39,10 +38,10 @@ namespace ft {
 
     template<class InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
-           typename enable_if<
-                              is_input_iterator<InputIterator>::value &&
-                              !is_forward_iterator<InputIterator>::value &&
-                              is_constructioble<value_type, typename iterator_traits<InputIterator>::reference>::value,
+           typename enable_if<DetectIterator<T>::value,
+//                              is_input_iterator<InputIterator>::value &&
+//                              !is_forward_iterator<InputIterator>::value &&
+//                              is_constructioble<value_type, typename iterator_traits<InputIterator>::reference>::value,
                               InputIterator>::type* = 0)
         : allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0)
     {

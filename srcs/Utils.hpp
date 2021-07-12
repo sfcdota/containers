@@ -21,8 +21,16 @@ namespace ft {
     return a > b ? a : b;
   }
 
+template <class Arg1, class Arg2, class Result>
+struct binary_function
+{
+  typedef Arg1   first_argument_type;
+  typedef Arg2   second_argument_type;
+  typedef Result result_type;
+};
+
   template <class T>
-  struct less {
+  struct less: binary_function<T, T, bool>{
     bool operator() (const T & lhs, const T & rhs) const { return lhs < rhs; }
   };
 

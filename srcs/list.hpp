@@ -46,7 +46,6 @@ class list {
   typename Alloc::template rebind<Node<value_type> >::other	allocator_;
   node_ptr end_;
   size_type size_;
-  Node<value_type> default_;
 
   node_ptr NewNode(const_reference data, node_ptr pos) {
     node_ptr new_node = allocator_.allocate(1);
