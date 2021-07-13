@@ -1,6 +1,6 @@
 // list::sort
 #include <iostream>
-#include "list.hpp"
+#include <list>
 #include <string>
 #include <cctype>
 
@@ -19,8 +19,8 @@ bool compare_nocase (const std::string& first, const std::string& second)
 
 int main ()
 {
- ft::list<std::string> mylist;
- ft::list<std::string>::iterator it;
+ std::list<std::string> mylist;
+ std::list<std::string>::iterator it;
  mylist.push_back ("one");
  mylist.push_back ("two");
  mylist.push_back ("Three");

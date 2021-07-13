@@ -1,11 +1,11 @@
 // accessing mapped values
 #include <iostream>
-#include "map.hpp"
+#include <map>
 #include <string>
 
 int main ()
 {
-  ft::map<char,std::string> mymap;
+  std::map<char,std::string> mymap;
 
   mymap['a']="an element";
   mymap['b']="another element";

@@ -1,11 +1,11 @@
 // list::assign
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> first;
- ft::list<int> second;
+ std::list<int> first;
+ std::list<int> second;
  first.assign (7,100); // 7 ints with value 100
 
  second.assign (first.begin(),first.end()); // a copy of first

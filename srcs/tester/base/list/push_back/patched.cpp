@@ -1,11 +1,11 @@
 // list::push_back
 #include <iostream>
-#include "list.hpp"
+#include <list>
 #include <sstream>
 
 int main ()
 {
- ft::list<int> mylist;
+ std::list<int> mylist;
  int myint;
 
  std::cout << "Please enter some integers (enter 0 to end):\n";

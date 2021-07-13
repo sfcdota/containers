@@ -1,10 +1,10 @@
 // resizing list
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist;
+ std::list<int> mylist;
 
  // set some initial content:
  for (int i=1; i<10; ++i) mylist.push_back(i);
@@ -14,7 +14,7 @@ int main ()
  mylist.resize(12);
 
  std::cout << "mylist contains:";
- for (ft::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+ for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
  std::cout << ' ' << *it;
 
  std::cout << '\n';

@@ -1,10 +1,10 @@
 // swap maps
 #include <iostream>
-#include "map.hpp"
+#include <map>
 
 int main ()
 {
-  ft::map<char,int> foo,bar;
+  std::map<char,int> foo,bar;
 
   foo['x']=100;
   foo['y']=200;
@@ -16,11 +16,11 @@ int main ()
   foo.swap(bar);
 
   std::cout << "foo contains:\n";
-  for (ft::map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
+  for (std::map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
     std::cout << it->first << " => " << it->second << '\n';
 
   std::cout << "bar contains:\n";
-  for (ft::map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
+  for (std::map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
     std::cout << it->first << " => " << it->second << '\n';
 
   return 0;

@@ -1,11 +1,11 @@
 // erasing from list
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist;
- ft::list<int>::iterator it1,it2;
+ std::list<int> mylist;
+ std::list<int>::iterator it1,it2;
 
  // set some values:
  for (int i=1; i<10; ++i) mylist.push_back(i*10);

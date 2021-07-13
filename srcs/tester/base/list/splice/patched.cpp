@@ -1,11 +1,11 @@
 // splicing lists
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist1, mylist2;
- ft::list<int>::iterator it;
+ std::list<int> mylist1, mylist2;
+ std::list<int>::iterator it;
 
  // set some initial values:
  for (int i=1; i<=4; ++i)

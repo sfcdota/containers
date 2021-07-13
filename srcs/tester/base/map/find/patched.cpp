@@ -1,11 +1,11 @@
 // map::find
 #include <iostream>
-#include "map.hpp"
+#include <map>
 
 int main ()
 {
-  ft::map<char,int> mymap;
-  ft::map<char,int>::iterator it;
+  std::map<char,int> mymap;
+  std::map<char,int>::iterator it;
 
   mymap['a']=50;
   mymap['b']=100;

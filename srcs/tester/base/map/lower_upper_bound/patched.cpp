@@ -1,11 +1,11 @@
 // map::lower_bound/upper_bound
 #include <iostream>
-#include "map.hpp"
+#include <map>
 
 int main ()
 {
-  ft::map<char,int> mymap;
-  ft::map<char,int>::iterator itlow,itup;
+  std::map<char,int> mymap;
+  std::map<char,int>::iterator itlow,itup;
 
   mymap['a']=20;
   mymap['b']=40;
@@ -19,7 +19,7 @@ int main ()
   mymap.erase(itlow,itup);        // erases [itlow,itup)
 
   // print content:
-  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+  for (std::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
     std::cout << it->first << " => " << it->second << '\n';
 
   return 0;

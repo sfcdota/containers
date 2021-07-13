@@ -1,10 +1,10 @@
 // map comparisons
 #include <iostream>
-#include "map.hpp"
+#include <map>
 
 int main ()
 {
-  ft::map<char,int> foo,bar;
+  std::map<char,int> foo,bar;
   foo['a']=100;
   foo['b']=200;
   bar['a']=10;

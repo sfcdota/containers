@@ -1,11 +1,11 @@
 // clearing lists
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist;
- ft::list<int>::iterator it;
+ std::list<int> mylist;
+ std::list<int>::iterator it;
 
  mylist.push_back (100);
  mylist.push_back (200);

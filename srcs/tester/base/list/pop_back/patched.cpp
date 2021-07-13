@@ -1,10 +1,10 @@
 // list::pop_back
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist;
+ std::list<int> mylist;
  int sum (0);
  mylist.push_back (100);
  mylist.push_back (200);

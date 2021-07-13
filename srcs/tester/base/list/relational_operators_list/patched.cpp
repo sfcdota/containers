@@ -1,18 +1,18 @@
 // list comparisons
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> a;
+ std::list<int> a;
  a.push_back(10);
  a.push_back(20);
  a.push_back(30);
- ft::list<int> b;
+ std::list<int> b;
  b.push_back(10);
  b.push_back(20);
  b.push_back(30);
- ft::list<int> c;
+ std::list<int> c;
  c.push_back(30);
  c.push_back(20);
  c.push_back(10);

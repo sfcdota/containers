@@ -1,6 +1,6 @@
 // list::merge
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 // compare only integral part:
 bool mycomparison (double first, double second)
@@ -8,7 +8,7 @@ bool mycomparison (double first, double second)
 
 int main ()
 {
- ft::list<double> first, second;
+ std::list<double> first, second;
 
  first.push_back (3.1);
  first.push_back (2.2);
@@ -30,7 +30,7 @@ int main ()
  first.merge(second,mycomparison);
 
  std::cout << "first contains:";
- for (ft::list<double>::iterator it=first.begin(); it!=first.end(); ++it)
+ for (std::list<double>::iterator it=first.begin(); it!=first.end(); ++it)
  std::cout << ' ' << *it;
  std::cout << '\n';
 

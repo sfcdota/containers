@@ -1,12 +1,12 @@
 // inserting into a list
 #include <iostream>
-#include "list.hpp"
+#include <list>
 #include <vector>
 
 int main ()
 {
- ft::list<int> mylist;
- ft::list<int>::iterator it;
+ std::list<int> mylist;
+ std::list<int>::iterator it;
 
  // set some initial values:
  for (int i=1; i<=5; ++i) mylist.push_back(i); // 1 2 3 4 5

@@ -1,11 +1,11 @@
 // list::max_size
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int>::size_type i = 1000;
- ft::list<int> mylist;
+ std::list<int>::size_type i = 1000;
+ std::list<int> mylist;
 
  std::cout << "Enter number of elements: ";
 

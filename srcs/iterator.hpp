@@ -29,8 +29,8 @@ class const_list_iterator {
   virtual ~const_list_iterator() {};
   bool operator==(const const_list_iterator &r) const { return this->ptr_ == r.ptr_; };
   bool operator!=(const const_list_iterator &r) const { return this->ptr_ != r.ptr_; };
-  const reference operator*() { return ptr_->data; };
-  const reference operator->() { return &(ptr_->data); };
+  reference operator*() { return (*ptr_)(); };
+  T* operator->() { return &((*ptr_)()); };
   const_list_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
   const_list_iterator operator++(int) { const_list_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
   const_list_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
@@ -56,8 +56,8 @@ class list_iterator {
   virtual ~list_iterator() {};
   bool operator==(const list_iterator &r) const { return this->ptr_ == r.ptr_; };
   bool operator!=(const list_iterator &r) const { return this->ptr_ != r.ptr_; };
-  reference operator*() { return ptr_->data; };
-  pointer operator->() { return &(ptr_->data); };
+  reference operator*() { return (*ptr_)(); };
+  T* operator->() { return &((*ptr_)()); };
   list_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
   list_iterator operator++(int) { list_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
   list_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
@@ -84,8 +84,8 @@ class const_map_iterator {
   virtual ~const_map_iterator() {};
   bool operator==(const const_map_iterator &r) const { return this->ptr_ == r.ptr_; };
   bool operator!=(const const_map_iterator &r) const { return this->ptr_ != r.ptr_; };
-  const reference operator*() { return ptr_->data; };
-  const reference operator->() { return &(ptr_->data); };
+  const reference operator*() const { return (*ptr_)(); };
+  T* operator->() const { return &(*ptr_)(); };
   const_map_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
   const_map_iterator operator++(int) { const_map_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
   const_map_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
@@ -110,9 +110,11 @@ class map_iterator {
   map_iterator & operator=(const map_iterator& in) { this->ptr_ = in.ptr_; return *this; };
   virtual ~map_iterator() {};
   bool operator==(const map_iterator &r) const { return this->ptr_ == r.ptr_; };
-  bool operator!=(const map_iterator &r) const { return this->ptr_ != r.ptr_; };
-  reference operator*() { return (*ptr_); };
-  pointer operator->() { return &(*ptr_); };
+  bool operator!=(const map_iterator &r) const {
+    return this->ptr_ != r.ptr_;
+  };
+  reference operator*() { return (*ptr_)(); };
+  T* operator->() { return &(*ptr_)(); };
   map_iterator & operator++() { ptr_ = ++(*ptr_); return *this; };
   map_iterator operator++(int) { map_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
   map_iterator & operator--() { ptr_ = --(*ptr_); return *this; };

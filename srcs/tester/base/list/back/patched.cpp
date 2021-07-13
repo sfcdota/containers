@@ -1,10 +1,10 @@
 // list::back
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist;
+ std::list<int> mylist;
 
  mylist.push_back(10);
 
@@ -14,7 +14,7 @@ int main ()
  }
 
  std::cout << "mylist contains:";
- for (ft::list<int>::iterator it=mylist.begin(); it!=mylist.end() ; ++it)
+ for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end() ; ++it)
  std::cout << ' ' << *it;
 
  std::cout << '\n';

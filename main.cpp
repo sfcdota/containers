@@ -8,6 +8,7 @@
 #include "srcs/map.hpp"
 using namespace ft;
 
+
 bool fncomp (char lhs, char rhs) {return lhs>rhs;}
 
 struct classcomp {
@@ -17,33 +18,28 @@ struct classcomp {
 
 int main ()
 {
-  ft::map<char,int> first;
+  ft::map<char,int> mymap;
+  ft::map<char,int>::iterator it;
 
+  // insert some values:
+  mymap['a']=10;
+  mymap['b']=20;
+  mymap['c']=30;
+  mymap['d']=40;
+  mymap['e']=50;
+  mymap['f']=60;
 
-  first['a']=10;
-  first['b']=30;
-  first['c']=50;
-  first['d']=70;
-  ft::map<char, int>::iterator f = first.begin();
+  it=mymap.find('b');
+  mymap.erase (it);                   // erasing by iterator
 
-  std::cout << f->first << std::endl;
-//  ft::map<char,int> second (first.begin(),first.end());
-//
-//  ft::map<char,int> third (second);
-//
-//  ft::map<char,int,classcomp> fourth;                 // class as Compare
-//
-//  bool(*fn_pt)(char,char) = fncomp;
-//  ft::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
-//
-//  fifth['a']=10;
-//  fifth['b']=30;
-//  fifth['c']=50;
-//  fifth['d']=70;
-//
-//  for (ft::map<char, int, bool(*)(char,char)>::iterator i = fifth.begin(); i != fifth.end(); i++)
-//
-//    std::cout << "fifth: " << i->first << " -> " << i->second << std::endl;
+  mymap.erase ('c');                  // erasing by key
+
+  it=mymap.find ('e');
+  mymap.erase ( it, mymap.end() );    // erasing by range
+
+  // show content:
+  for (it=mymap.begin(); it!=mymap.end(); ++it)
+    std::cout << it->first << " => " << it->second << '\n';
 
   return 0;
 }

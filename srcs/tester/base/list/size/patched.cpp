@@ -1,10 +1,10 @@
 // list::size
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> myints;
+ std::list<int> myints;
  std::cout << "0. size: " << myints.size() << '\n';
 
  for (int i=0; i<10; i++) myints.push_back(i);

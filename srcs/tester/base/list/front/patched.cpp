@@ -1,10 +1,10 @@
 // list::front
 #include <iostream>
-#include "list.hpp"
+#include <list>
 
 int main ()
 {
- ft::list<int> mylist;
+ std::list<int> mylist;
 
  mylist.push_back(77);
  mylist.push_back(22);
