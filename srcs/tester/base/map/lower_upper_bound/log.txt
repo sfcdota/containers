@@ -1,0 +1,40 @@
+In file included from ./base/map/lower_upper_bound/patched.cpp:3:
+../map.hpp:594:63: error: no matching member function for call to 'lower_bound_node'
+    iterator lower_bound(const key_type &k) { return iterator(lower_bound_node(k)); }
+                                                              ^~~~~~~~~~~~~~~~
+./base/map/lower_upper_bound/patched.cpp:16:15: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::lower_bound' requested here
+  itlow=mymap.lower_bound ('b');  // itlow points to b
+              ^
+../map.hpp:480:13: note: candidate template ignored: couldn't infer template argument 'comp'
+    nodeptr lower_bound_node(const V & data) {
+            ^
+../map.hpp:596:63: error: no matching member function for call to 'upper_bound_node'
+    iterator upper_bound(const key_type &k) { return iterator(upper_bound_node(k)); }
+                                                              ^~~~~~~~~~~~~~~~
+./base/map/lower_upper_bound/patched.cpp:17:14: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::upper_bound' requested here
+  itup=mymap.upper_bound ('d');   // itup points to e (not d!)
+             ^
+../map.hpp:488:13: note: candidate template ignored: couldn't infer template argument 'comp'
+    nodeptr upper_bound_node(const V & data) {
+            ^
+In file included from ./base/map/lower_upper_bound/patched.cpp:3:
+In file included from ../map.hpp:4:
+../Utils.hpp:101:47: error: cannot assign to non-static data member 'first' with const-qualified type 'ft::pair<const char, int>::first_type' (aka 'const char')
+    pair& operator= (pair const & pr) { first = pr.first; second = pr.second; return *this;};
+                                        ~~~~~ ^
+../map.hpp:347:17: note: in instantiation of member function 'ft::pair<const char, int>::operator=' requested here
+        p->data = y->data;
+                ^
+../map.hpp:567:37: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::delete_node_' requested here
+    void erase(iterator position) { delete_node_(position.GetPtr()); }
+                                    ^
+../map.hpp:580:9: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::erase' requested here
+        erase(tmp);
+        ^
+./base/map/lower_upper_bound/patched.cpp:19:9: note: in instantiation of member function 'ft::map<char, int, ft::less<char>, std::allocator<ft::pair<const char, int> > >::erase' requested here
+  mymap.erase(itlow,itup);        // erases [itlow,itup)
+        ^
+../Utils.hpp:90:16: note: non-static data member 'first' declared const here
+    first_type first;
+    ~~~~~~~~~~~^~~~~
+3 errors generated.

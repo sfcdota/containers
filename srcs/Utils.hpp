@@ -1,7 +1,7 @@
 
 #ifndef SRCS_UTILS_HPP_
 #define SRCS_UTILS_HPP_
-
+#include <iostream>
 namespace ft {
   template <class T>
   void swap(T & a, T & b) {
@@ -93,12 +93,12 @@ struct binary_function
     pair(): first(), second() {};
 
     template<class U, class V>
-    pair (const pair<U,V>& pr) { *this = pr; };
+    pair (const pair<U,V>& pr): first(pr.first), second(pr.second) {}
 
-    pair (const first_type& a, const second_type& b): first(a), second(b) {};
+    pair (first_type const & a, second_type const & b): first(a), second(b) {};
 
 
-    pair& operator= (const pair& pr) { first = pr.first; second = pr.second; return *this;};
+    pair& operator= (pair const & pr) { first = pr.first; second = pr.second; return *this;};
 
 
     friend bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
@@ -115,6 +115,7 @@ struct binary_function
 
     friend bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return !(lhs<rhs); }
 
+    friend std::ostream & operator<<(std::ostream &os, const pair<T1, T2> &s) { os << "[" << s.first << ", " << s.second << "]" << std::endl; return os; }
 
   };
 

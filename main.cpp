@@ -9,37 +9,25 @@
 using namespace ft;
 
 
-bool fncomp (char lhs, char rhs) {return lhs>rhs;}
-
-struct classcomp {
-  bool operator() (const char& lhs, const char& rhs) const
-  {return lhs<rhs;}
-};
-
 int main ()
 {
   ft::map<char,int> mymap;
   ft::map<char,int>::iterator it;
 
-  // insert some values:
-  mymap['a']=10;
-  mymap['b']=20;
-  mymap['c']=30;
-  mymap['d']=40;
-  mymap['e']=50;
-  mymap['f']=60;
+  mymap['a']=50;
+  mymap['b']=100;
+  mymap['c']=150;
+  mymap['d']=200;
 
-  it=mymap.find('b');
-  mymap.erase (it);                   // erasing by iterator
+  it = mymap.find('b');
+  if (it != mymap.end())
+    mymap.erase (it);
 
-  mymap.erase ('c');                  // erasing by key
-
-  it=mymap.find ('e');
-  mymap.erase ( it, mymap.end() );    // erasing by range
-
-  // show content:
-  for (it=mymap.begin(); it!=mymap.end(); ++it)
-    std::cout << it->first << " => " << it->second << '\n';
+  // print content:
+  std::cout << "elements in mymap:" << '\n';
+  std::cout << "a => " << mymap.find('a')->second << '\n';
+  std::cout << "c => " << mymap.find('c')->second << '\n';
+  std::cout << "d => " << mymap.find('d')->second << '\n';
 
   return 0;
 }

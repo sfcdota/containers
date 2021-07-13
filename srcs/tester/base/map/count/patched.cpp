@@ -1,10 +1,10 @@
 // map::count
 #include <iostream>
-#include <map>
+#include "map.hpp"
 
 int main ()
 {
-  std::map<char,int> mymap;
+  ft::map<char,int> mymap;
   char c;
 
   mymap ['a']=101;

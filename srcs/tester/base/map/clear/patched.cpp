@@ -1,17 +1,17 @@
 // map::clear
 #include <iostream>
-#include <map>
+#include "map.hpp"
 
 int main ()
 {
-  std::map<char,int> mymap;
+  ft::map<char,int> mymap;
 
   mymap['x']=100;
   mymap['y']=200;
   mymap['z']=300;
 
   std::cout << "mymap contains:\n";
-  for (std::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
     std::cout << it->first << " => " << it->second << '\n';
 
   mymap.clear();
@@ -19,7 +19,7 @@ int main ()
   mymap['b']=2202;
 
   std::cout << "mymap contains:\n";
-  for (std::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+  for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
     std::cout << it->first << " => " << it->second << '\n';
 
   return 0;

@@ -1,10 +1,10 @@
 // map::value_comp
 #include <iostream>
-#include <map>
+#include "map.hpp"
 
 int main ()
 {
-  std::map<char,int> mymap;
+  ft::map<char,int> mymap;
 
   mymap['x']=1001;
   mymap['y']=2002;
@@ -14,7 +14,7 @@ int main ()
 
   std::pair<char,int> highest = *mymap.rbegin();          // last element
 
-  std::map<char,int>::iterator it = mymap.begin();
+  ft::map<char,int>::iterator it = mymap.begin();
   do {
     std::cout << it->first << " => " << it->second << '\n';
   } while ( mymap.value_comp()(*it++, highest) );

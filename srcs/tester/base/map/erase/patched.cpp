@@ -1,11 +1,11 @@
 // erasing from map
 #include <iostream>
-#include <map>
+#include "map.hpp"
 
 int main ()
 {
-  std::map<char,int> mymap;
-  std::map<char,int>::iterator it;
+  ft::map<char,int> mymap;
+  ft::map<char,int>::iterator it;
 
   // insert some values:
   mymap['a']=10;

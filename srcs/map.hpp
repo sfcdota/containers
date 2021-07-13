@@ -13,19 +13,26 @@ namespace ft {
    public:
     typedef Key key_type;
     typedef T mapped_type;
-    typedef ft::pair<key_type, mapped_type> value_type;
-//    typedef ft::pair<const key_type, mapped_type> value_type;
+//    typedef ft::pair<key_type, mapped_type> value_type;
+    typedef ft::pair<const key_type, mapped_type> value_type;
     typedef Compare key_compare;
 
 
-    class value_compare: public binary_function<value_type, value_type, bool>  {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+    class value_compare  {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
      friend class map;
      protected:
       key_compare comp;
       value_compare (key_compare c) : comp(c) {}  // constructed with map's comparison object
      public:
+
       bool operator() (const value_type& x, const value_type& y) const
       { return comp(x.first, y.first); }
+
+      bool operator()(const value_type & x, const key_type & y) const
+      { return comp(x.first, y); }
+
+      bool operator()(const key_type & x, const value_type & y) const
+      { return comp(x, y.first); }
     };
    private:
     enum Color {
@@ -116,12 +123,11 @@ namespace ft {
    private:
     allocator_type allocator_;
     typedef Node<value_type>* nodeptr;
-    typedef value_compare vc;
     nodeptr root_;
     nodeptr end_;
     size_type size_;
     key_compare comp_;
-
+    value_compare vc;
     nodeptr tree_min(nodeptr n) const{
       return n->min();
     }
@@ -140,7 +146,7 @@ namespace ft {
       std::cout << (isLeft ? "├──" : "└──" );
       if (node) {
         std::cout << (node->color == black ? "b" : "r") << node->data << std::endl;
-        if (node->left || node->right) {
+        if (node->left || node->right) { // print NIL on child only if second exists
           printBT(prefix + (isLeft ? "│   " : "    "), node->left, true);
           printBT(prefix + (isLeft ? "│   " : "    "), node->right, false);
         }
@@ -148,26 +154,44 @@ namespace ft {
       else
         std::cout << "NIL" << std::endl;
     }
-    void printBT(nodeptr node)
+   public:
+    void printBT(nodeptr node = NULL)
     {
-      printBT("", node, false);
+      printBT("", node ? node : root_, false);
     }
-    nodeptr GetRoot(nodeptr n) {
+   private:
+    nodeptr GetRoot(nodeptr n) const {
       return n->get_root();
     }
-    template<class V, class comp> nodeptr GetNode(const V & data) {
+
+
+    template<class V> nodeptr GetNode(const V & data) {
       nodeptr p = GetRoot(end_->left);
       while (p)
-        if (comp()(data, p->data))
+        if (vc(data, p->data))
           p = p->left;
-        else if (comp()(p->data, data))
+        else if (vc(p->data, data))
           p = p->right;
         else
           return p;
       return p;
     }
-    template<class V, class comp> value_type GetNodeValue(const V & data) {
-      return GetNode<V, comp>(data)->data.second;
+
+    template<class V> nodeptr GetNode(const V & data) const {
+      nodeptr p = GetRoot(end_->left);
+      while (p)
+        if (vc(data, p->data))
+          p = p->left;
+        else if (vc(p->data, data))
+          p = p->right;
+        else
+          return p;
+      return p;
+    }
+
+
+    template<class V> value_type GetNodeValue(const V & data) {
+      return GetNode(data)->data.second;
     }
     nodeptr NewNode() {
       nodeptr new_node = allocator_.allocate(1);
@@ -243,7 +267,7 @@ namespace ft {
         while ((cur = compare_(data, cur->data) ? cur->left : cur->right))
           tmp = cur;
         if (!compare_(data, tmp->data) && !compare_(tmp->data, data)) {
-          t = true;
+          t = false;
           return tmp;
         }
         cur = NewNode(data, tmp);
@@ -298,7 +322,6 @@ namespace ft {
     void delete_node_(nodeptr p) {
       if (!p)
         return;
-      nodeptr src = p;
       nodeptr y = NULL, x = NULL;
       if (!p->left || !p->right)
         y = p;
@@ -324,7 +347,7 @@ namespace ft {
         p->data = y->data;
       if (y->color == black)
         FixDeleting(x);
-      DeleteNode(src);
+      DeleteNode(y);
       update_end_(root_->max(), root_->min());
     }
     nodeptr delete_node(const value_type & data) {
@@ -337,7 +360,7 @@ namespace ft {
     }
     void FixDeleting(nodeptr n) {
       nodeptr s;
-      while(n != root_ && n->color == black) {
+      while(n && n->parent != NULL && n->color == black) {
         s = sibling(n);
         if (IsLeftChild(n)) {
           if (s->color == red) {
@@ -445,10 +468,10 @@ namespace ft {
 //      return get_node_by_key(k)->data.second;
 //    }
 
-    template<class V, class comp>
-    size_t count_equal_key_nodes(const V &data) {
+
+    size_t count_equal_key_nodes(const key_type &data) const {
       size_t i = 0;
-      for (nodeptr r = GetNode<V, comp>(data); r && !comp()(r->data, data) && !comp()(data, r->data); r = r->right)
+      for (nodeptr r = GetNode(data); r && !vc(r->data, data) && !vc(data, r->data); r = r->right)
         i++;
       return i;
     }
@@ -471,7 +494,7 @@ namespace ft {
 //    value_compare vc;
    public:
     explicit map(const key_compare &comp = key_compare(),
-      const allocator_type &alloc = allocator_type()): allocator_(alloc), root_(NULL), size_(0), comp_(comp) {
+      const allocator_type &alloc = allocator_type()): allocator_(alloc), root_(NULL), size_(0), comp_(comp), vc(comp_) {
       end_ = NewNode();
       end_->parent = NULL;
       end_->left = end_;
@@ -483,7 +506,7 @@ namespace ft {
         const key_compare &comp = key_compare(),
         const allocator_type &alloc = allocator_type(),
         typename enable_if<true, has_iterator_category<InputIterator> >::type* = 0)
-        : allocator_(alloc), root_(NULL), size_(0), comp_(comp) {
+        : allocator_(alloc), root_(NULL), size_(0), comp_(comp), vc(comp_) {
         end_ = NewNode();
         end_->parent = NULL;
         end_->left = end_;
@@ -491,7 +514,7 @@ namespace ft {
       insert(first, last);
     }
 
-    map(const map &x): allocator_(x.allocator_), root_(NULL), size_(0), comp_(x.comp_) {
+    map(const map &x): allocator_(x.allocator_), root_(NULL), size_(0), comp_(x.comp_), vc(comp_) {
       end_ = NewNode();
       end_->parent = NULL;
       end_->left = end_;
@@ -511,7 +534,7 @@ namespace ft {
     map &operator=(const map &x) {
       if (*this != x) {
         clear();
-        value_compare() = x.value_compare();
+        vc = x.vc;
         for(nodeptr i = x.end_->right; i != x.end_; i++)
           insert(x->data);
       }
@@ -522,18 +545,18 @@ namespace ft {
     const_iterator begin() const { return const_iterator(end_->right); };
     iterator end() { return iterator(end_); };
     const_iterator end() const { return const_iterator(end_); };
-    reverse_iterator rbegin() { return iterator(end_); };
-    const_reverse_iterator rbegin() const { return const_reverse_iterator(end_); };
-    reverse_iterator rend() { return iterator(end_->right); };
-    const_reverse_iterator rend() const { return const_reverse_iterator(end_->right); };
+    reverse_iterator rbegin() { return reverse_iterator(end_->left); };
+    const_reverse_iterator rbegin() const { return const_reverse_iterator(end_->left); };
+    reverse_iterator rend() { return reverse_iterator(end_); };
+    const_reverse_iterator rend() const { return const_reverse_iterator(end_); };
     bool empty() const { return size_ == 0; }
     size_type size() const { return size_; }
     size_type max_size() const { return allocator_.max_size(); }
     mapped_type &operator[](const key_type &k)
         { return (*((this->insert(make_pair<key_type, mapped_type>(k,mapped_type()))).first)).second; }
     pair<iterator, bool> insert(const value_type &val) {
-      bool t = false;
-      return make_pair(iterator(insert_node(val, value_comp(), t)), t);
+      bool t = true;
+      return make_pair(iterator(insert_node(val, vc, t)), t);
     }
     iterator insert(iterator position, const value_type &val) { (void)position; return iterator(insert(val).first); }
     template<class InputIterator>
@@ -541,38 +564,37 @@ namespace ft {
       for(iterator it = end(); first != last; ++first)
         insert(*first);
     }
-    void erase(iterator position) { erase(position, ++position); }
+    void erase(iterator position) { delete_node_(position.GetPtr()); }
 
     //todo size_type return!
     size_type erase(const key_type &k) {
       size_t c = 0;
-      for (nodeptr p = GetNode<k, key_compare>(k); p; c++)
+      for (nodeptr p; (p = GetNode<const key_type>(k)); c++)
         delete_node_(p);
       return c;
       //allocator destroy <-
     }
     void erase(iterator first, iterator last) {
       while(first != last) {
-        iterator tmp = ++first;
-        delete_node_(first.GetPtr());
-        first = tmp;
+        iterator tmp = first++;
+        erase(tmp);
       }
     }
     void swap(map &xx) {
       ft::swap(this->end_, xx.end_);
       ft::swap(this->size_, xx.size_);
-      ft::swap(this->value_comp(), xx.value_comp());
+      ft::swap(this->vc, xx.vc);
     }
     void clear() { delete_tree(); };
     key_compare key_comp() const { return comp_; }
     value_compare value_comp() const { return value_compare(comp_); }
-    iterator find(const key_type &k) { return iterator(GetNode<key_type, key_compare>(k)); }
-    const_iterator find(const key_type &k) const { return const_iterator(GetNode<key_type, key_compare>(k)); }
+    iterator find(const key_type &k) { return iterator(GetNode<const key_type>(k)); }
+    const_iterator find(const key_type &k) const { return const_iterator(GetNode(k)); }
     size_type count(const key_type &k) const { return count_equal_key_nodes(k); }
-    iterator lower_bound(const key_type &k) { return iterator(lower_bound_node<key_type, key_compare>(k)); }
-    const_iterator lower_bound(const key_type &k) const { return const_iterator(lower_bound_node<key_type, key_compare>(k)); }
-    iterator upper_bound(const key_type &k) { return iterator(upper_bound_node<key_type, key_compare>(k)); }
-    const_iterator upper_bound(const key_type &k) const { return const_iterator(upper_bound_node<key_type, key_compare>(k)); }
+    iterator lower_bound(const key_type &k) { return iterator(lower_bound_node(k)); }
+    const_iterator lower_bound(const key_type &k) const { return const_iterator(lower_bound_node(k)); }
+    iterator upper_bound(const key_type &k) { return iterator(upper_bound_node(k)); }
+    const_iterator upper_bound(const key_type &k) const { return const_iterator(upper_bound_node(k)); }
     pair<const_iterator, const_iterator> equal_range(const key_type &k) const {
       nodeptr right = GetNode<key_type, key_compare>(k);
       if (!right)
