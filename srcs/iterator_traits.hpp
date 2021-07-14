@@ -43,9 +43,10 @@ class iterator_traits<const T *> {
 template <class T>
 struct has_iterator_category {
  private:
-  struct two {char x; char xx;};
-  template <class V> static two test (...);
-  template <class V> static char test(typename V::iterator_category* = 0);
+  typedef char yes[1];
+  typedef yes no[2];
+  template <class V> static yes& test (...);
+  template <class V> static no& test(typename V::iterator_category* = 0);
  public:
   static const bool value = sizeof(test<T>(0)) == 1;
 };

@@ -97,11 +97,18 @@ struct binary_function
 
     pair (first_type const & a, second_type const & b): first(a), second(b) {};
 
+    ~pair() {};
 
-    pair& operator= (pair const & pr) { first = pr.first; second = pr.second; return *this;};
+    pair& operator=(pair const & pr) {
+      if (this == &pr)
+        return *this;
+      first = pr.first;
+      second = pr.second;
+      return *this;
+    }
 
 
-    friend bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+    friend bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
     { return lhs.first == rhs.first && lhs.second == rhs.second; }
 
     friend bool operator!= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return !(lhs == rhs); };

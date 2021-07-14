@@ -154,7 +154,7 @@ class reverse_iterator
   virtual ~reverse_iterator() {};
   //   reference operator*() const { Iterator tmp = current; return *--tmp; };
   reference operator*() const { Iterator tmp = current; return *(tmp); };
-  pointer operator->() const { return &operator*(); };
+  value_type* operator->() const { return &operator*(); };
   reverse_iterator & operator++() { --current; return *this; };
   reverse_iterator operator++(int) { reverse_iterator tmp(*this); --current; return tmp; };
   reverse_iterator & operator--() { ++current; return *this; };

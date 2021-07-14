@@ -38,11 +38,9 @@ namespace ft {
 
     template<class InputIterator>
     vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
-           typename enable_if<DetectIterator<T>::value,
-//                              is_input_iterator<InputIterator>::value &&
-//                              !is_forward_iterator<InputIterator>::value &&
-//                              is_constructioble<value_type, typename iterator_traits<InputIterator>::reference>::value,
-                              InputIterator>::type* = 0)
+//          typename enable_if< has_iterator<InputIterator >::value, void>::type* = 0,
+//           typename enable_if< has_iterator_category<iterator_traits<InputIterator> >::value, true_type>::type* = 0
+             typename enable_if< is_integral<iterator_traits<InputIterator> >::value, void>::type* = 0) // CORRECT
         : allocator_(alloc), array_(allocator_.allocate(1)), capacity_(0), size_(0)
     {
       assign(first, last);
