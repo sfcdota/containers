@@ -9,10 +9,10 @@
 #define version "standard STL version"
 namespace ft = std;
 #else
-#include "srcs/vector.hpp"
-#include "srcs/set.hpp"
-#include "srcs/map.hpp"
-#include "srcs/stack.hpp"
+#include "vector.hpp"
+#include "set.hpp"
+#include "map.hpp"
+#include "stack.hpp"
 
 #define version "ft STL version"
 #endif
@@ -1213,10 +1213,17 @@ void set_test() {
   set_value_comp();
 }
 
-int main() {
-
-  stack_test();
-  vector_test();
-  map_test();
-  set_test();
+int main(int argc, char **argv) {
+  long i;
+  if (argc == 1)
+    i = 1;
+  else
+    i = strtol(argv[1], NULL, 10);
+  std::cout << "Test will run " << i << " times!" << std::endl;
+  for(long j = 0; j < i; j++) {
+    stack_test();
+    vector_test();
+    map_test();
+    set_test();
+  }
 }

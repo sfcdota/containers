@@ -7,7 +7,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 #Main sources
 file(GLOB srcs "*.cpp")
-file(GLOB containers "srcs/*.hpp")
+file(GLOB containers "*.hpp")
 
 #Utils headers
 #System headers
