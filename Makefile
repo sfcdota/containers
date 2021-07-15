@@ -8,7 +8,7 @@ SRC = 		$(wildcard ./*.cpp)
 OBJ = 		$(patsubst %.cpp, %.o, $(SRC))
 
 ifdef STD
-version=STD
+version=STANDARD
 else
 version=FT
 endif

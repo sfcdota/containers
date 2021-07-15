@@ -1,7 +1,7 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
-#include "iterator_traits.hpp"
-
+//#include "iterator_traits.hpp"
+#include "is_integral.hpp"
 namespace ft {
 
 template<class Category, class T, class Distance = std::ptrdiff_t,
@@ -67,8 +67,8 @@ class list_iterator {
  protected:
   pointer ptr_;
 };
-
-
+template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+class map_iterator;
 template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
 class const_map_iterator {
  public:
@@ -78,6 +78,10 @@ class const_map_iterator {
   typedef Reference reference;
   typedef Category  iterator_category;
   const_map_iterator() { ptr_ = NULL; };
+
+    const_map_iterator(map_iterator<iterator_category, value_type, difference_type, pointer, reference> it) {
+      ptr_ = it.GetPtr();
+    }
   const_map_iterator(const pointer & ptr) { ptr_ = ptr; };
   const_map_iterator(const const_map_iterator & in) { *this = in; };
   const_map_iterator & operator=(const const_map_iterator& in) { this->ptr_ = in.ptr_; return *this; };
@@ -95,7 +99,7 @@ class const_map_iterator {
   pointer ptr_;
 };
 
-template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+template <class Category, class T, class Distance, class Pointer, class Reference>
 class map_iterator {
  public:
   typedef T         value_type;
@@ -119,7 +123,7 @@ class map_iterator {
   map_iterator operator++(int) { map_iterator tmp(*this); ptr_ = ++(*ptr_); return tmp; };
   map_iterator & operator--() { ptr_ = --(*ptr_); return *this; };
   map_iterator operator--(int) { map_iterator tmp(*this); ptr_ = --(*ptr_); return tmp; };
-  operator ft::const_list_iterator<Category, T>() { return const_list_iterator<Category, T>(ptr_); }
+  operator ft::const_map_iterator<Category, T>() const { return const_map_iterator<Category, T>(ptr_); }
   pointer GetPtr()  const { return ptr_; }
  protected:
   pointer ptr_;
